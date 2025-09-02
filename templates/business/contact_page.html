@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-contactpage{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Page Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ page.title }}</h1>
+            {% if page.introduction %}
+                <div class="text-lg text-gray-600">
+                    {{ page.introduction|richtext }}
+                </div>
+            {% endif %}
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Contact Information -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h2>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <span class="text-blue-600 font-bold">📧</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Email</h3>
+                            <p class="text-gray-600">
+                                <a href="mailto:azan@sweetbliss.pk" class="text-blue-600 hover:text-blue-800">
+                                    azan@sweetbliss.pk
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                            <span class="text-green-600 font-bold">📞</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Phone</h3>
+                            <p class="text-gray-600">
+                                <a href="tel:+923157680420" class="text-blue-600 hover:text-blue-800">
+                                    +92-315-7680420
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <span class="text-purple-600 font-bold">📍</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Office Address</h3>
+                            <p class="text-gray-600">
+                                05-231, Ravi Park<br>
+                                Minar-e-Pakistan<br>
+                                Lahore, Punjab, Pakistan
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Hours -->
+                <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+                    <h3 class="font-semibold text-gray-900 mb-4">Business Hours</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex justify-between">
+                            <span>Monday - Friday:</span>
+                            <span>9:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Saturday:</span>
+                            <span>9:00 AM - 2:00 PM</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Sunday:</span>
+                            <span>Closed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+                
+                <form class="space-y-4" action="#" method="POST">
+                    {% csrf_token %}
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                        <input type="text" id="name" name="name" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label for="business_type" class="block text-sm font-medium text-gray-700 mb-2">Business Type</label>
+                        <select id="business_type" name="business_type" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Business Type</option>
+                            <option value="retailer">Retailer</option>
+                            <option value="wholesaler">Wholesaler</option>
+                            <option value="distributor">Distributor</option>
+                            <option value="supermarket">Supermarket Chain</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                        <textarea id="message" name="message" rows="4" required 
+                                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                  placeholder="Tell us about your business requirements and how we can help..."></textarea>
+                    </div>
+
+                    <button type="submit" 
+                            class="w-full bg-blue-600 text-white py-3 px-4 rounded-md font-semibold hover:bg-blue-700 transition duration-300">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Additional Contact Options -->
+        <section class="mt-12 text-center bg-blue-50 rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4">Ready to Partner with Us?</h2>
+            <p class="text-gray-700 mb-6">Whether you're looking to stock premium products or explore wholesale opportunities, we're here to help your business succeed.</p>
+            <div class="space-x-4">
+                <a href="/products/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                    View Our Products
+                </a>
+                <a href="/partnerships/" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                    Partnership Opportunities
+                </a>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

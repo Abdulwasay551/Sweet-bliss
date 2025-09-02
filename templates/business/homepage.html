@@ -1,0 +1,73 @@
+{% extends "base/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block title %}{{ page.effective_seo_title }} | {{ settings.seo.GlobalSEOSettings.site_name }}{% endblock %}
+
+{% block body_class %}homepage{% endblock %}
+
+{% block schema_type %}Website{% endblock %}
+
+{% block content %}
+<!-- Professional Hero Section -->
+<section id="home" class="hero">
+    {% if page.hero_background %}
+    {% image page.hero_background fill-1920x1080 as hero_bg %}
+    <div class="hero-background" style="background-image: url('{{ hero_bg.url }}');"></div>
+    {% endif %}
+    
+    <div class="hero-content">
+        <h1>{{ page.hero_title }}</h1>
+        <div class="tagline">{{ page.hero_subtitle }}</div>
+        <div class="subtext">{{ page.hero_description }}</div>
+        <a href="/contact/" class="cta-button">
+            <span>Partner with Us</span>
+            <span>→</span>
+        </a>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="section featured-products">
+    <div class="container">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="section-subtitle">Premium imported brands that customers recognize and love worldwide</div>
+        
+        <div class="products-grid">
+            {% for product in featured_products %}
+            <article class="product-card">
+                <div class="since-badge">Premium Brand</div>
+                
+                <div class="product-logo">
+                    {% if product.image %}
+                    {% image product.image fill-120x80 as product_img %}
+                    <img src="{{ product_img.url }}" alt="{{ product.name }} Logo" loading="lazy">
+                    {% elif product.brand.logo %}
+                    {% image product.brand.logo fill-120x80 as brand_logo %}
+                    <img src="{{ brand_logo.url }}" alt="{{ product.brand.name }} Logo" loading="lazy">
+                    {% endif %}
+                </div>
+                
+                <h3>{{ product.name }}</h3>
+                <p class="product-brand">{{ product.brand.name }}</p>
+                <p class="product-description">{{ product.description|truncatewords:20 }}</p>
+            </article>
+            {% empty %}
+            <div class="no-products">
+                <p>No featured products available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center">
+            <a href="/products/" class="btn btn-outline">View All Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- StreamField Content -->
+{% if page.content_sections %}
+<div class="streamfield-content">
+    {{ page.content_sections }}
+</div>
+{% endif %}
+{% endblock %}

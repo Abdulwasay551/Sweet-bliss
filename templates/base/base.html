@@ -1,0 +1,208 @@
+{% load static wagtailcore_tags wagtailimages_tags wagtailsettings_tags %}
+{% get_settings %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>{% block title %}{{ page.effective_seo_title }}{% if not page.seo_title %} | {{ settings.seo.GlobalSEOSettings.site_name }}{% endif %}{% endblock %}</title>
+    <meta name="title" content="{% block meta_title %}{{ page.effective_seo_title }}{% if not page.seo_title %} | {{ settings.seo.GlobalSEOSettings.site_name }}{% endif %}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{{ page.effective_meta_description }}{% endblock %}">
+    {% if page.meta_keywords %}<meta name="keywords" content="{{ page.meta_keywords }}">{% endif %}
+    
+    <!-- Robots Meta Tag -->
+    <meta name="robots" content="{% block robots %}{{ page.robots_tag }}{% endblock %}">
+    {% if page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %}
+    
+    <!-- Open Graph Meta Tags (Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="{% block og_title %}{% if page.og_title %}{{ page.og_title }}{% else %}{{ page.effective_seo_title }}{% endif %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% if page.og_description %}{{ page.og_description }}{% else %}{{ page.effective_meta_description }}{% endif %}{% endblock %}">
+    {% if page.og_image %}
+        {% image page.og_image width-1200 height-630 as og_img %}
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ og_img.url }}">
+    {% elif settings.seo.GlobalSEOSettings.default_og_image %}
+        {% image settings.seo.GlobalSEOSettings.default_og_image width-1200 height-630 as default_og_img %}
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ default_og_img.url }}">
+    {% endif %}
+    <meta property="og:site_name" content="{{ settings.seo.GlobalSEOSettings.site_name }}">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:title" content="{% block twitter_title %}{% if page.twitter_title %}{{ page.twitter_title }}{% else %}{{ page.effective_seo_title }}{% endif %}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% if page.twitter_description %}{{ page.twitter_description }}{% else %}{{ page.effective_meta_description }}{% endif %}{% endblock %}">
+    {% if page.twitter_image %}
+        {% image page.twitter_image width-1200 height-600 as twitter_img %}
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ twitter_img.url }}">
+    {% elif page.og_image %}
+        {% image page.og_image width-1200 height-600 as twitter_fallback_img %}
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ twitter_fallback_img.url }}">
+    {% elif settings.seo.GlobalSEOSettings.default_og_image %}
+        {% image settings.seo.GlobalSEOSettings.default_og_image width-1200 height-600 as default_twitter_img %}
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ default_twitter_img.url }}">
+    {% endif %}
+    
+    <!-- Search Engine Verification -->
+    {% if settings.seo.GlobalSEOSettings.google_site_verification %}
+    <meta name="google-site-verification" content="{{ settings.seo.GlobalSEOSettings.google_site_verification }}">
+    {% endif %}
+    {% if settings.seo.GlobalSEOSettings.bing_site_verification %}
+    <meta name="msvalidate.01" content="{{ settings.seo.GlobalSEOSettings.bing_site_verification }}">
+    {% endif %}
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Anime.js for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- CSS -->
+    {% block extra_css %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Google Tag Manager -->
+    {% if settings.seo.GlobalSEOSettings.google_tag_manager_id %}
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ settings.seo.GlobalSEOSettings.google_tag_manager_id }}');</script>
+    {% endif %}
+    
+    <!-- Google Analytics 4 -->
+    {% if settings.seo.GlobalSEOSettings.google_analytics_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.seo.GlobalSEOSettings.google_analytics_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ settings.seo.GlobalSEOSettings.google_analytics_id }}');
+    </script>
+    {% endif %}
+    
+    <!-- Facebook Pixel -->
+    {% if settings.seo.GlobalSEOSettings.facebook_pixel_id %}
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '{{ settings.seo.GlobalSEOSettings.facebook_pixel_id }}');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id={{ settings.seo.GlobalSEOSettings.facebook_pixel_id }}&ev=PageView&noscript=1"
+    /></noscript>
+    {% endif %}
+    
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "{% block schema_type %}{{ page.schema_type|default:"WebPage" }}{% endblock %}",
+        "name": "{{ page.effective_seo_title }}",
+        "description": "{{ page.effective_meta_description }}",
+        "url": "{{ request.build_absolute_uri }}",
+        {% if page.og_image %}
+        {% image page.og_image width-1200 height-630 as schema_img %}
+        "image": "{{ request.scheme }}://{{ request.get_host }}{{ schema_img.url }}",
+        {% endif %}
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ settings.seo.GlobalSEOSettings.company_name }}",
+            "description": "{{ settings.seo.GlobalSEOSettings.company_description }}",
+            {% if settings.seo.GlobalSEOSettings.company_logo %}
+            {% image settings.seo.GlobalSEOSettings.company_logo width-600 height-300 as company_logo_img %}
+            "logo": "{{ request.scheme }}://{{ request.get_host }}{{ company_logo_img.url }}",
+            {% endif %}
+            "url": "{{ request.scheme }}://{{ request.get_host }}",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "{{ settings.seo.GlobalSEOSettings.phone }}",
+                "email": "{{ settings.seo.GlobalSEOSettings.email }}",
+                "contactType": "Business"
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "{{ settings.seo.GlobalSEOSettings.address }}"
+            },
+            "sameAs": [
+                {% if settings.seo.GlobalSEOSettings.facebook_url %}"{{ settings.seo.GlobalSEOSettings.facebook_url }}"{% if settings.seo.GlobalSEOSettings.twitter_url or settings.seo.GlobalSEOSettings.instagram_url or settings.seo.GlobalSEOSettings.linkedin_url %},{% endif %}{% endif %}
+                {% if settings.seo.GlobalSEOSettings.twitter_url %}"{{ settings.seo.GlobalSEOSettings.twitter_url }}"{% if settings.seo.GlobalSEOSettings.instagram_url or settings.seo.GlobalSEOSettings.linkedin_url %},{% endif %}{% endif %}
+                {% if settings.seo.GlobalSEOSettings.instagram_url %}"{{ settings.seo.GlobalSEOSettings.instagram_url }}"{% if settings.seo.GlobalSEOSettings.linkedin_url %},{% endif %}{% endif %}
+                {% if settings.seo.GlobalSEOSettings.linkedin_url %}"{{ settings.seo.GlobalSEOSettings.linkedin_url }}"{% endif %}
+            ]
+        }
+        {% block extra_schema %}{% endblock %}
+    }
+    </script>
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <!-- Google Tag Manager (noscript) -->
+    {% if settings.seo.GlobalSEOSettings.google_tag_manager_id %}
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ settings.seo.GlobalSEOSettings.google_tag_manager_id }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    {% endif %}
+    
+    <!-- Navigation -->
+    {% include "includes/header.html" %}
+    
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    {% include "includes/footer.html" %}
+    
+    <!-- JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Cookie Consent (GDPR) -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your experience on our website. By continuing to use this site, you agree to our use of cookies.</p>
+            <div class="cookie-actions">
+                <button id="accept-cookies" class="btn-accept">Accept</button>
+                <button id="decline-cookies" class="btn-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Cookie consent functionality
+        (function() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookie-consent').style.display = 'block';
+            }
+            
+            document.getElementById('accept-cookies').addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'accepted');
+                document.getElementById('cookie-consent').style.display = 'none';
+            });
+            
+            document.getElementById('decline-cookies').addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'declined');
+                document.getElementById('cookie-consent').style.display = 'none';
+            });
+        })();
+    </script>
+</body>
+</html>

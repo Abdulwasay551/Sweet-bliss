@@ -1,0 +1,676 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0">
+            <div class="floating-element floating-element-1"></div>
+            <div class="floating-element floating-element-2"></div>
+            <div class="floating-element floating-element-3"></div>
+            <div class="floating-element floating-element-4"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="hero-content">
+                    <h1 class="text-6xl lg:text-7xl font-bold text-white mb-6 text-shadow hero-title">
+                        {{ page.hero_title|default:"Sweet Bliss" }}
+                    </h1>
+                    <p class="text-2xl text-purple-100 mb-6 hero-subtitle">
+                        {{ page.hero_subtitle|default:"Bringing Sweet Moments Closer to You" }}
+                    </p>
+                    <p class="text-lg text-purple-200 mb-8 leading-relaxed hero-description">
+                        {{ page.hero_description|default:"At Sweet Bliss, we carefully source the finest confectionery brands from around the world, delivering premium FMCG products that create joy, flavor, and unforgettable experiences for customers across Pakistan." }}
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
+                        <a href="/products/" class="btn-primary text-lg">
+                            <i class="fas fa-box mr-2"></i>Explore Products
+                        </a>
+                        <a href="/contact/" class="btn-secondary text-lg">
+                            <i class="fas fa-handshake mr-2"></i>Partner With Us
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 hero-stats">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">50+</div>
+                            <div class="text-purple-200 text-sm">Global Brands</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">100+</div>
+                            <div class="text-purple-200 text-sm">Active Partners</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">5+</div>
+                            <div class="text-purple-200 text-sm">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">24/7</div>
+                            <div class="text-purple-200 text-sm">Support</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual -->
+                <div class="hero-visual relative">
+                    <div class="relative">
+                        <!-- 3D Product Cards -->
+                        <div class="product-showcase">
+                            <div class="product-card-3d product-card-1">
+                                <div class="product-logo">
+                                    <img src="{% static 'Pringles.svg' %}" alt="Pringles" class="brand-image">
+                                </div>
+                                <div class="product-name">Pringles</div>
+                            </div>
+                            <div class="product-card-3d product-card-2">
+                                <div class="product-logo">
+                                    <img src="{% static 'Kitkat.svg' %}" alt="KitKat" class="brand-image">
+                                </div>
+                                <div class="product-name">KitKat</div>
+                            </div>
+                            <div class="product-card-3d product-card-3">
+                                <div class="product-logo">
+                                    <img src="{% static 'Jacobs.svg' %}" alt="Jacobs" class="brand-image">
+                                </div>
+                                <div class="product-name">Jacobs</div>
+                            </div>
+                            <div class="product-card-3d product-card-4">
+                                <div class="product-logo">
+                                    <img src="{% static 'Rani.png' %}" alt="Rani" class="brand-image">
+                                </div>
+                                <div class="product-name">Rani</div>
+                            </div>
+                            <div class="product-card-3d product-card-5">
+                                <div class="product-logo">
+                                    <img src="{% static 'Barbican.webp' %}" alt="Barbican" class="brand-image">
+                                </div>
+                                <div class="product-name">Barbican</div>
+                            </div>
+                            <div class="product-card-3d product-card-6">
+                                <div class="product-logo">
+                                    <img src="{% static 'Nestle.svg' %}" alt="Nestlé" class="brand-image">
+                                </div>
+                                <div class="product-name">Nestlé</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <div class="w-6 h-10 border-2 border-white/50 rounded-full p-1">
+                <div class="w-1 h-3 bg-white rounded-full animate-bounce mx-auto"></div>
+            </div>
+            <p class="text-white text-sm mt-2">Scroll Down</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section-padding bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold gradient-text mb-6">Why Choose Sweet Bliss?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">We deliver excellence through quality products, reliable service, and trusted partnerships that drive your business forward.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card card-hover glass-effect rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-star text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Premium Imported Brands</h3>
+                    <p class="text-gray-600">We source only the finest confectionery and beverage brands from trusted global manufacturers, ensuring quality and authenticity.</p>
+                </div>
+
+                <div class="feature-card card-hover glass-effect rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Quality & Authenticity</h3>
+                    <p class="text-gray-600">Every product undergoes rigorous quality checks and compliance verification to ensure freshness and authenticity for your customers.</p>
+                </div>
+
+                <div class="feature-card card-hover glass-effect rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-truck text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Reliable Distribution</h3>
+                    <p class="text-gray-600">Efficient logistics and distribution network ensuring timely delivery across Pakistan with temperature-controlled storage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="section-padding bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold gradient-text mb-6">Featured Products</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Discover our curated selection of premium FMCG products from world-renowned brands.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="product-logo-container mb-4 text-center">
+                        <img src="{% static 'Pringles.svg' %}" alt="Pringles" class="product-image mx-auto">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center">Pringles</h3>
+                    <p class="text-gray-600 text-center mb-4">Premium potato crisps in variety of flavors</p>
+                    <div class="text-center">
+                        <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">Snacks</span>
+                    </div>
+                </div>
+
+                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="product-logo-container mb-4 text-center">
+                        <img src="{% static 'Jacobs.svg' %}" alt="Jacobs Coffee" class="product-image mx-auto">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center">Jacobs Coffee</h3>
+                    <p class="text-gray-600 text-center mb-4">Rich and aromatic coffee blends</p>
+                    <div class="text-center">
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">Coffee</span>
+                    </div>
+                </div>
+
+                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="product-logo-container mb-4 text-center">
+                        <img src="{% static 'Rani.png' %}" alt="Rani Juice" class="product-image mx-auto">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center">Rani Juice</h3>
+                    <p class="text-gray-600 text-center mb-4">Refreshing fruit juices and beverages</p>
+                    <div class="text-center">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Beverages</span>
+                    </div>
+                </div>
+
+                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="product-logo-container mb-4 text-center">
+                        <img src="{% static 'Barbican.webp' %}" alt="Barbican" class="product-image mx-auto">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center">Barbican</h3>
+                    <p class="text-gray-600 text-center mb-4">Non-alcoholic malt beverages</p>
+                    <div class="text-center">
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Beverages</span>
+                    </div>
+                </div>
+
+                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="product-logo-container mb-4 text-center">
+                        <img src="{% static 'Kitkat.svg' %}" alt="KitKat" class="product-image mx-auto">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center">KitKat</h3>
+                    <p class="text-gray-600 text-center mb-4">Crispy wafer chocolate bars</p>
+                    <div class="text-center">
+                        <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Chocolate</span>
+                    </div>
+                </div>
+
+                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="product-logo-container mb-4 text-center">
+                        <img src="{% static 'Nestle.svg' %}" alt="Nestlé" class="product-image mx-auto">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center">Nestlé</h3>
+                    <p class="text-gray-600 text-center mb-4">Premium confectionery products</p>
+                    <div class="text-center">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Confectionery</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="/products/" class="btn-primary text-lg">
+                    <i class="fas fa-arrow-right mr-2"></i>View All Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Brands Section -->
+    <section class="section-padding bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold gradient-text mb-6">Our Partner Brands</h2>
+                <p class="text-xl text-gray-600">Trusted global manufacturers and premium brands</p>
+            </div>
+
+            <div class="brands-scroll overflow-hidden">
+                <div class="flex animate-scroll-infinite space-x-16 items-center">
+                    <!-- First set of brands -->
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Nestle.svg' %}" alt="Nestlé" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Nestlé</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Pringles.svg' %}" alt="Pringles" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Pringles</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Kitkat.svg' %}" alt="KitKat" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">KitKat</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Jacobs.svg' %}" alt="Jacobs" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Jacobs</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Rani.png' %}" alt="Rani" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Rani</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Barbican.webp' %}" alt="Barbican" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Barbican</div>
+                    </div>
+                    
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Nestle.svg' %}" alt="Nestlé" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Nestlé</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Pringles.svg' %}" alt="Pringles" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Pringles</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Kitkat.svg' %}" alt="KitKat" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">KitKat</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Jacobs.svg' %}" alt="Jacobs" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Jacobs</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Rani.png' %}" alt="Rani" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Rani</div>
+                    </div>
+                    <div class="brand-item flex-shrink-0 text-center">
+                        <div class="brand-logo-container mb-2">
+                            <img src="{% static 'Barbican.webp' %}" alt="Barbican" class="brand-logo">
+                        </div>
+                        <div class="font-semibold text-gray-700 text-sm">Barbican</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-br from-blue-900 via-purple-900/90 to-purple-600/40 text-white relative overflow-hidden py-20">
+        <div class="absolute inset-0 bg-black/5"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 class="text-4xl text-white lg:text-5xl font-bold mb-6">Ready to Partner with Sweet Bliss?</h2>
+                <p class="text-xl mb-8 text-purple-100">Join our network of successful retailers and distributors across Pakistan. Let's build sweet success together.</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/contact/" class="btn-secondary text-lg bg-white text-white hover:bg-gray-100">
+                        <i class="fas fa-phone mr-2"></i>Contact Us Today
+                    </a>
+                    <a href="/partnerships/" class="btn-primary text-lg bg-transparent border-2 border-white hover:bg-white hover:text-white">
+                        <i class="fas fa-handshake mr-2"></i>Partnership Info
+                    </a>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <div class="text-3xl mb-2">📞</div>
+                        <div class="font-semibold">{{ settings.seo.GlobalSEOSettings.phone|default:"+92-315-7680420" }}</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl mb-2">📧</div>
+                        <div class="font-semibold">{{ settings.seo.GlobalSEOSettings.email|default:"azan@sweetbliss.pk" }}</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl mb-2">📍</div>
+                        <div class="font-semibold">Lahore, Pakistan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<style>
+/* Hero Section Animations */
+.floating-element {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 15s infinite ease-in-out;
+}
+
+.floating-element-1 {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-element-2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: -3s;
+}
+
+.floating-element-3 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 60%;
+    animation-delay: -6s;
+}
+
+.floating-element-4 {
+    width: 40px;
+    height: 40px;
+    top: 30%;
+    right: 30%;
+    animation-delay: -9s;
+}
+
+.product-showcase {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.product-card-3d {
+    position: absolute;
+    width: 80px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    animation: rotate 20s infinite linear;
+}
+
+.product-card-3d:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.product-emoji {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.product-logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.brand-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+}
+
+.brand-logo-container {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.brand-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.product-logo-container {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    max-width: 80px;
+    max-height: 80px;
+    object-fit: contain;
+}
+
+.product-name {
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.product-card-1 {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 0s;
+}
+
+.product-card-2 {
+    top: 25%;
+    right: 0;
+    animation-delay: -3s;
+}
+
+.product-card-3 {
+    bottom: 25%;
+    right: 0;
+    animation-delay: -6s;
+}
+
+.product-card-4 {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: -9s;
+}
+
+.product-card-5 {
+    bottom: 25%;
+    left: 0;
+    animation-delay: -12s;
+}
+
+.product-card-6 {
+    top: 25%;
+    left: 0;
+    animation-delay: -15s;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) translateX(150px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(150px) rotate(-360deg);
+    }
+}
+
+/* Hero content animations */
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.hero-buttons,
+.hero-stats {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.brands-scroll {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@keyframes scroll-infinite {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scroll-infinite {
+    animation: scroll-infinite 20s linear infinite;
+}
+
+/* Feature cards animation */
+.feature-card {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.product-card {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.scroll-indicator {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.scroll-indicator:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Hero animations
+    anime.timeline({
+        easing: 'easeOutCubic'
+    })
+    .add({
+        targets: '.hero-title',
+        opacity: [0, 1],
+        translateY: [30, 0],
+        duration: 800,
+        delay: 500
+    })
+    .add({
+        targets: '.hero-subtitle',
+        opacity: [0, 1],
+        translateY: [30, 0],
+        duration: 700,
+        delay: 200
+    })
+    .add({
+        targets: '.hero-description',
+        opacity: [0, 1],
+        translateY: [30, 0],
+        duration: 600,
+        delay: 200
+    })
+    .add({
+        targets: '.hero-buttons',
+        opacity: [0, 1],
+        translateY: [30, 0],
+        duration: 500,
+        delay: 200
+    })
+    .add({
+        targets: '.hero-stats',
+        opacity: [0, 1],
+        translateY: [30, 0],
+        duration: 400,
+        delay: 200
+    });
+
+    // Feature cards animation
+    const featureObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                anime({
+                    targets: entry.target,
+                    opacity: [0, 1],
+                    translateY: [50, 0],
+                    duration: 800,
+                    easing: 'easeOutCubic'
+                });
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.feature-card').forEach(card => {
+        featureObserver.observe(card);
+    });
+
+    // Product cards stagger animation
+    const productObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                anime({
+                    targets: '.product-card',
+                    opacity: [0, 1],
+                    translateY: [30, 0],
+                    duration: 600,
+                    delay: anime.stagger(100),
+                    easing: 'easeOutCubic'
+                });
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const productSection = document.querySelector('.product-card');
+    if (productSection) {
+        productObserver.observe(productSection);
+    }
+
+    // Scroll indicator click
+    document.querySelector('.scroll-indicator')?.addEventListener('click', function() {
+        anime({
+            targets: 'html, body',
+            scrollTop: window.innerHeight,
+            duration: 1000,
+            easing: 'easeInOutCubic'
+        });
+    });
+});
+</script>
+{% endblock %}

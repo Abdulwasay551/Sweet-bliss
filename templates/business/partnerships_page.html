@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-partnershipspage{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Page Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ page.title }}</h1>
+            {% if page.introduction %}
+                <div class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    {{ page.introduction|richtext }}
+                </div>
+            {% endif %}
+        </header>
+
+        <!-- Partnership Types -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Partnership Opportunities</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+                    <div class="text-4xl mb-4">🏪</div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Retailers</h3>
+                    <p class="text-sm text-gray-600">Stock premium products in your store</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+                    <div class="text-4xl mb-4">📦</div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Wholesalers</h3>
+                    <p class="text-sm text-gray-600">Distribute to multiple retail outlets</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+                    <div class="text-4xl mb-4">🚚</div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Distributors</h3>
+                    <p class="text-sm text-gray-600">Regional distribution partnerships</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+                    <div class="text-4xl mb-4">🏬</div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Supermarkets</h3>
+                    <p class="text-sm text-gray-600">Chain store partnerships</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Partner Section -->
+        {% if page.why_partner %}
+        <section class="mb-16">
+            <div class="bg-blue-50 rounded-lg p-8">
+                {{ page.why_partner|richtext }}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Partnership Benefits -->
+        {% if page.partnership_benefits %}
+        <section class="mb-16">
+            <div class="bg-green-50 rounded-lg p-8">
+                {{ page.partnership_benefits|richtext }}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Partnership Success Metrics -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Partnership Success</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">50+</div>
+                    <p class="text-sm text-gray-600">Active Partners</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">95%</div>
+                    <p class="text-sm text-gray-600">Partner Satisfaction</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">24/7</div>
+                    <p class="text-sm text-gray-600">Support Available</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-orange-600 mb-2">100%</div>
+                    <p class="text-sm text-gray-600">Quality Guarantee</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Partner -->
+        {% if page.how_to_partner %}
+        <section class="mb-16">
+            <div class="bg-gray-50 rounded-lg p-8">
+                {{ page.how_to_partner|richtext }}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Partner Requirements -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Partnership Requirements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-semibold text-gray-900 mb-4">🏢 Business Requirements</h3>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li>• Valid business registration</li>
+                        <li>• Established retail/wholesale operation</li>
+                        <li>• Appropriate storage facilities</li>
+                        <li>• Quality customer service standards</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-semibold text-gray-900 mb-4">💼 Financial Requirements</h3>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li>• Sound financial standing</li>
+                        <li>• Minimum order commitments</li>
+                        <li>• Payment terms agreement</li>
+                        <li>• Insurance coverage</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">What Our Partners Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="text-yellow-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600 text-sm mb-4">"Sweet Bliss has been an excellent partner. Their products are always fresh and their service is reliable."</p>
+                    <div class="font-semibold text-gray-900">- Ahmed Ali</div>
+                    <div class="text-xs text-gray-500">Retail Chain Owner</div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="text-yellow-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600 text-sm mb-4">"The quality of products and support from Sweet Bliss has helped grow our business significantly."</p>
+                    <div class="font-semibold text-gray-900">- Sarah Khan</div>
+                    <div class="text-xs text-gray-500">Supermarket Manager</div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="text-yellow-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600 text-sm mb-4">"Professional service and premium products. Sweet Bliss is our trusted FMCG partner."</p>
+                    <div class="font-semibold text-gray-900">- Muhammad Hassan</div>
+                    <div class="text-xs text-gray-500">Wholesale Distributor</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="text-center bg-blue-600 text-white rounded-lg p-8">
+            <h2 class="text-3xl font-bold mb-4">Ready to Partner with Sweet Bliss?</h2>
+            <p class="text-xl mb-6">Join our network of successful partners and grow your business with premium FMCG products.</p>
+            <div class="space-x-4">
+                <a href="/contact/" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+                    Start Partnership Process
+                </a>
+                <a href="/portfolio/" class="inline-block bg-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-400 transition duration-300">
+                    View Our Products
+                </a>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

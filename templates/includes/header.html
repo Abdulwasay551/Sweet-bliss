@@ -1,0 +1,384 @@
+{% load static %}
+
+<!-- Professional Animated Header -->
+<header id="main-header" class="relative top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out">
+    <nav class="glass-nav backdrop-blur-lg bg-white/10 border-b border-white/20">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-20">
+                <!-- Animated Logo -->
+                <div class="flex items-center space-x-3 logo-container">
+                    <div class="logo-icon bg-gradient-to-r from-purple-500 to-blue-500 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                        SB
+                    </div>
+                    <div class="logo-text">
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                            Sweet Bliss
+                        </h1>
+                        <p class="text-sm text-gray-600 -mt-1">Premium FMCG Distributor</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8 nav-menu">
+                    <a href="/" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="/about/" class="nav-link {% if 'about' in request.path %}active{% endif %}">
+                        <i class="fas fa-building mr-2"></i>About
+                    </a>
+                    <a href="/products/" class="nav-link {% if 'products' in request.path %}active{% endif %}">
+                        <i class="fas fa-box mr-2"></i>Products
+                    </a>
+                    <a href="/services/" class="nav-link {% if 'services' in request.path %}active{% endif %}">
+                        <i class="fas fa-cogs mr-2"></i>Services
+                    </a>
+                    <a href="/team/" class="nav-link {% if 'team' in request.path %}active{% endif %}">
+                        <i class="fas fa-users mr-2"></i>Team
+                    </a>
+                    <a href="/portfolio/" class="nav-link {% if 'portfolio' in request.path %}active{% endif %}">
+                        <i class="fas fa-briefcase mr-2"></i>Portfolio
+                    </a>
+                    <a href="/partnerships/" class="nav-link {% if 'partnerships' in request.path %}active{% endif %}">
+                        <i class="fas fa-handshake mr-2"></i>Partnerships
+                    </a>
+                </div>
+
+                <!-- Contact Button -->
+                <div class="hidden lg:block">
+                    <a href="/contact/" class="btn-primary">
+                        <i class="fas fa-phone mr-2"></i>Contact Us
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 transition-all duration-300">
+                    <div class="hamburger">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu lg:hidden overflow-hidden max-h-0 transition-all duration-500 ease-in-out bg-white/95 backdrop-blur-lg border-t border-white/20">
+            <div class="container mx-auto px-4 py-8">
+                <div class="flex flex-col space-y-6">
+                    <a href="/" class="mobile-nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                        <i class="fas fa-home mr-3"></i>Home
+                    </a>
+                    <a href="/about/" class="mobile-nav-link {% if 'about' in request.path %}active{% endif %}">
+                        <i class="fas fa-building mr-3"></i>About Us
+                    </a>
+                    <a href="/products/" class="mobile-nav-link {% if 'products' in request.path %}active{% endif %}">
+                        <i class="fas fa-box mr-3"></i>Our Products
+                    </a>
+                    <a href="/services/" class="mobile-nav-link {% if 'services' in request.path %}active{% endif %}">
+                        <i class="fas fa-cogs mr-3"></i>Services
+                    </a>
+                    <a href="/team/" class="mobile-nav-link {% if 'team' in request.path %}active{% endif %}">
+                        <i class="fas fa-users mr-3"></i>Our Team
+                    </a>
+                    <a href="/portfolio/" class="mobile-nav-link {% if 'portfolio' in request.path %}active{% endif %}">
+                        <i class="fas fa-briefcase mr-3"></i>Portfolio
+                    </a>
+                    <a href="/partnerships/" class="mobile-nav-link {% if 'partnerships' in request.path %}active{% endif %}">
+                        <i class="fas fa-handshake mr-3"></i>Partnerships
+                    </a>
+                    <a href="/contact/" class="mobile-nav-link {% if 'contact' in request.path %}active{% endif %}">
+                        <i class="fas fa-phone mr-3"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<style>
+/* Header Styles */
+#main-header {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.logo-container {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInLeft 1s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Navigation Links */
+.nav-menu {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideInDown 1s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+@keyframes slideInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-link {
+    position: relative;
+    color: #4a5568;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.15);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 80%;
+}
+
+/* Mobile Menu */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.hamburger-line {
+    width: 20px;
+    height: 2px;
+    background: #4a5568;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu.active {
+    max-height: 800px;
+}
+
+.mobile-nav-link {
+    color: #4a5568;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid transparent;
+    font-size: 1.1rem;
+}
+
+.mobile-nav-link:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    border-left-color: #667eea;
+    transform: translateX(5px);
+}
+
+.mobile-nav-link.active {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.15);
+    border-left-color: #667eea;
+}
+
+/* Menu Button Animation */
+#mobile-menu-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+#mobile-menu-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+#mobile-menu-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Scroll Effect */
+.header-scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header-scrolled .nav-link {
+    color: #2d3748;
+}
+
+.header-scrolled .logo-text h1 {
+    background: linear-gradient(to right, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo-text p {
+        font-size: 0.75rem;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.getElementById('main-header');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    // Mobile menu toggle
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!header.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        }
+    });
+    
+    // Header scroll effect
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', function() {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > 100) {
+            header.classList.add('header-scrolled');
+        } else {
+            header.classList.remove('header-scrolled');
+        }
+        
+        // Hide header on scroll down, show on scroll up
+        if (currentScrollY > lastScrollY && currentScrollY > 200) {
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+    
+    // Add entrance animation to nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach((link, index) => {
+        link.style.opacity = '0';
+        link.style.transform = 'translateY(-20px)';
+        
+        setTimeout(() => {
+            link.style.transition = 'all 0.5s ease';
+            link.style.opacity = '1';
+            link.style.transform = 'translateY(0)';
+        }, 600 + (index * 100));
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+</script>

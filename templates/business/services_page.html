@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-servicespage{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Page Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ page.title }}</h1>
+            {% if page.introduction %}
+                <div class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    {{ page.introduction|richtext }}
+                </div>
+            {% endif %}
+        </header>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Importing Services -->
+            {% if page.importing_services %}
+            <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition duration-300">
+                <div class="text-4xl mb-6 text-center">🌍</div>
+                {{ page.importing_services|richtext }}
+            </div>
+            {% endif %}
+
+            <!-- Distribution Services -->
+            {% if page.distribution_services %}
+            <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition duration-300">
+                <div class="text-4xl mb-6 text-center">🚚</div>
+                {{ page.distribution_services|richtext }}
+            </div>
+            {% endif %}
+
+            <!-- Partnership Services -->
+            {% if page.partnership_services %}
+            <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition duration-300">
+                <div class="text-4xl mb-6 text-center">🤝</div>
+                {{ page.partnership_services|richtext }}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Service Benefits -->
+        <section class="bg-blue-50 rounded-lg p-8 mb-12">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8 text-center">Why Choose Sweet Bliss Services?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-3xl mb-4">⭐</div>
+                    <h3 class="font-semibold text-blue-900 mb-2">Premium Quality</h3>
+                    <p class="text-sm text-gray-700">Authentic products from trusted global manufacturers</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl mb-4">🔄</div>
+                    <h3 class="font-semibold text-blue-900 mb-2">Reliable Supply</h3>
+                    <p class="text-sm text-gray-700">Consistent availability and timely delivery</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl mb-4">📋</div>
+                    <h3 class="font-semibold text-blue-900 mb-2">Full Compliance</h3>
+                    <p class="text-sm text-gray-700">All regulatory and quality certifications</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl mb-4">💼</div>
+                    <h3 class="font-semibold text-blue-900 mb-2">Business Support</h3>
+                    <p class="text-sm text-gray-700">Ongoing partnership and growth assistance</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Process -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">How We Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Consultation</h3>
+                    <p class="text-sm text-gray-600">Understanding your business needs and requirements</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Product Selection</h3>
+                    <p class="text-sm text-gray-600">Curating the right product portfolio for your market</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Import & Quality Check</h3>
+                    <p class="text-sm text-gray-600">Handling all import procedures and quality assurance</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">4</div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Distribution</h3>
+                    <p class="text-sm text-gray-600">Efficient delivery and ongoing support</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="text-center bg-gray-50 rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to Get Started?</h2>
+            <p class="text-gray-600 mb-6">Let's discuss how our services can help grow your business and delight your customers.</p>
+            <div class="space-x-4">
+                <a href="/contact/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                    Contact Us Today
+                </a>
+                <a href="/partnerships/" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                    Become a Partner
+                </a>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

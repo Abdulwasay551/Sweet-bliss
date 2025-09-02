@@ -1,0 +1,367 @@
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailsettings_tags %}
+{% get_settings %}
+
+<!-- Animated Footer -->
+<footer class="relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900"></div>
+    <div class="absolute inset-0 bg-black/50"></div>
+    
+    <!-- Floating Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="floating-shape floating-shape-1"></div>
+        <div class="floating-shape floating-shape-2"></div>
+        <div class="floating-shape floating-shape-3"></div>
+    </div>
+
+    <div class="relative z-10">
+        <!-- Main Footer Content -->
+        <div class="container mx-auto px-4 pt-16 pb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div class="footer-section stagger-animation">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">SB</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Sweet Bliss</h3>
+                            <p class="text-purple-200 text-sm">Premium FMCG Distribution</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        {{ settings.seo.GlobalSEOSettings.company_description|default:"Bringing Sweet Moments Closer to You. We carefully source the finest confectionery brands from around the world." }}
+                    </p>
+                    <!-- Social Media Icons -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-icon hover-scale">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon hover-scale">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon hover-scale">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon hover-scale">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section stagger-animation">
+                    <h4 class="text-lg font-semibold text-white mb-6 flex items-center">
+                        <i class="fas fa-link mr-2 text-purple-400"></i>Quick Links
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="footer-link"><i class="fas fa-home mr-2"></i>Home</a></li>
+                        <li><a href="/about/" class="footer-link"><i class="fas fa-info-circle mr-2"></i>About Us</a></li>
+                        <li><a href="/products/" class="footer-link"><i class="fas fa-box mr-2"></i>Products</a></li>
+                        <li><a href="/portfolio/" class="footer-link"><i class="fas fa-briefcase mr-2"></i>Portfolio</a></li>
+                        <li><a href="/services/" class="footer-link"><i class="fas fa-cogs mr-2"></i>Services</a></li>
+                        <li><a href="/partnerships/" class="footer-link"><i class="fas fa-handshake mr-2"></i>Partnerships</a></li>
+                        <li><a href="/team/" class="footer-link"><i class="fas fa-users mr-2"></i>Team</a></li>
+                        <li><a href="/contact/" class="footer-link"><i class="fas fa-envelope mr-2"></i>Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Product Categories -->
+                <div class="footer-section stagger-animation">
+                    <h4 class="text-lg font-semibold text-white mb-6 flex items-center">
+                        <i class="fas fa-th-large mr-2 text-purple-400"></i>Product Categories
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="/products/" class="footer-link"><i class="fas fa-cookie mr-2"></i>Chocolates & Confectionery</a></li>
+                        <li><a href="/products/" class="footer-link"><i class="fas fa-bacon mr-2"></i>Snacks & Crisps</a></li>
+                        <li><a href="/products/" class="footer-link"><i class="fas fa-glass-whiskey mr-2"></i>Beverages & Drinks</a></li>
+                        <li><a href="/products/" class="footer-link"><i class="fas fa-coffee mr-2"></i>Coffee & Hot Beverages</a></li>
+                        <li><a href="/products/" class="footer-link"><i class="fas fa-candy-cane mr-2"></i>Gum & Chewing Products</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section stagger-animation">
+                    <h4 class="text-lg font-semibold text-white mb-6 flex items-center">
+                        <i class="fas fa-address-card mr-2 text-purple-400"></i>Contact Info
+                    </h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-purple-400 mt-1"></i>
+                            <div>
+                                <p class="text-gray-300">{{ settings.seo.GlobalSEOSettings.address|default:"05-231, Ravi Park, Minar-e-Pakistan, Lahore, Punjab, Pakistan" }}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-purple-400"></i>
+                            <a href="tel:{{ settings.seo.GlobalSEOSettings.phone|default:'+923157680420' }}" class="text-gray-300 hover:text-white transition-colors">
+                                {{ settings.seo.GlobalSEOSettings.phone|default:"+92-315-7680420" }}
+                            </a>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-purple-400"></i>
+                            <a href="mailto:{{ settings.seo.GlobalSEOSettings.email|default:'azan@sweetbliss.pk' }}" class="text-gray-300 hover:text-white transition-colors">
+                                {{ settings.seo.GlobalSEOSettings.email|default:"azan@sweetbliss.pk" }}
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div class="mt-6 p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
+                        <h5 class="font-semibold text-white mb-2 flex items-center">
+                            <i class="fas fa-clock mr-2 text-purple-400"></i>Business Hours
+                        </h5>
+                        <div class="text-sm text-gray-300 space-y-1">
+                            <div class="flex justify-between">
+                                <span>Mon - Fri:</span>
+                                <span>9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Saturday:</span>
+                                <span>9:00 AM - 2:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Sunday:</span>
+                                <span>Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Signup -->
+            <div class="border-t border-white/10 pt-8 mb-8">
+                <div class="text-center stagger-animation">
+                    <h3 class="text-2xl font-bold text-white mb-4">Stay Updated with Sweet Bliss</h3>
+                    <p class="text-gray-300 mb-6">Get the latest updates on new products, partnerships, and business opportunities.</p>
+                    <div class="max-w-md mx-auto flex">
+                        <input type="email" placeholder="Enter your email address" 
+                               class="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-l-full text-white placeholder-gray-400 focus:outline-none focus:border-purple-400">
+                        <button class="btn-primary rounded-l-none rounded-r-full px-6">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-white/10 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-400 text-sm mb-4 md:mb-0">
+                        <p>&copy; {% now "Y" %} Sweet Bliss. All rights reserved. | 
+                           <a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a> | 
+                           <a href="/terms/" class="hover:text-white transition-colors">Terms of Service</a>
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 text-sm text-gray-400">
+                        <span>Made with</span>
+                        <i class="fas fa-heart text-red-500 animate-pulse"></i>
+                        <span>in Pakistan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 pointer-events-none z-40">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<style>
+/* Footer Styles */
+footer {
+    position: relative;
+}
+
+.footer-section {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.footer-link {
+    color: #d1d5db;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+}
+
+.footer-link:hover {
+    color: #a855f7;
+    transform: translateX(5px);
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.social-icon:hover {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(168, 85, 247, 0.4);
+}
+
+.floating-shape {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    animation: float 20s infinite linear;
+}
+
+.floating-shape-1 {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-shape-2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: -5s;
+}
+
+.floating-shape-3 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 70%;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-30px) rotate(120deg);
+    }
+    66% {
+        transform: translateY(30px) rotate(240deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(360deg);
+    }
+}
+
+#back-to-top.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+#back-to-top:hover {
+    transform: translateY(-2px) scale(1.1);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Footer animations
+    const footerSections = document.querySelectorAll('.footer-section');
+    
+    const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    footerSections.forEach(section => {
+        footerObserver.observe(section);
+    });
+    
+    // Animate footer sections with stagger effect
+    anime({
+        targets: '.stagger-animation',
+        opacity: [0, 1],
+        translateY: [50, 0],
+        duration: 800,
+        delay: anime.stagger(200),
+        easing: 'easeOutCubic'
+    });
+    
+    // Back to top button
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+    
+    backToTopBtn.addEventListener('click', function() {
+        anime({
+            targets: 'html, body',
+            scrollTop: 0,
+            duration: 800,
+            easing: 'easeOutCubic'
+        });
+    });
+    
+    // Social icons hover animation
+    document.querySelectorAll('.social-icon').forEach(icon => {
+        icon.addEventListener('mouseenter', function() {
+            anime({
+                targets: this,
+                scale: [1, 1.2],
+                rotate: [0, 360],
+                duration: 300,
+                easing: 'easeOutCubic'
+            });
+        });
+        
+        icon.addEventListener('mouseleave', function() {
+            anime({
+                targets: this,
+                scale: [1.2, 1],
+                rotate: [360, 0],
+                duration: 300,
+                easing: 'easeOutCubic'
+            });
+        });
+    });
+    
+    // Newsletter signup
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add your newsletter signup logic here
+            anime({
+                targets: this,
+                scale: [1, 0.95, 1],
+                duration: 200,
+                easing: 'easeOutCubic',
+                complete: function() {
+                    alert('Thank you for subscribing!');
+                }
+            });
+        });
+    }
+});
+</script>

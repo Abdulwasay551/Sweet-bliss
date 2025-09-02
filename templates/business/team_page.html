@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-teampage{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Page Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ page.title }}</h1>
+            {% if page.introduction %}
+                <div class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    {{ page.introduction|richtext }}
+                </div>
+            {% endif %}
+        </header>
+
+        <!-- Team Members -->
+        {% if team_members %}
+        <section class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for member in team_members %}
+                <div class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition duration-300">
+                    {% if member.photo %}
+                        {% image member.photo width-200 height-200 class="mx-auto rounded-full mb-4" %}
+                    {% else %}
+                        <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-gray-500">{{ member.name|first }}</span>
+                        </div>
+                    {% endif %}
+                    
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ member.name }}</h3>
+                    <p class="text-blue-600 font-semibold mb-3">{{ member.position }}</p>
+                    
+                    {% if member.bio %}
+                        <p class="text-gray-600 text-sm">{{ member.bio }}</p>
+                    {% endif %}
+                    
+                    {% if member.email or member.phone %}
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            {% if member.email %}
+                                <p class="text-sm text-gray-500">
+                                    <span class="font-medium">Email:</span> 
+                                    <a href="mailto:{{ member.email }}" class="text-blue-600 hover:text-blue-800">{{ member.email }}</a>
+                                </p>
+                            {% endif %}
+                            {% if member.phone %}
+                                <p class="text-sm text-gray-500">
+                                    <span class="font-medium">Phone:</span> 
+                                    <a href="tel:{{ member.phone }}" class="text-blue-600 hover:text-blue-800">{{ member.phone }}</a>
+                                </p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Leadership Excellence -->
+        <section class="bg-blue-50 rounded-lg p-8 mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 text-center">Leadership Excellence</h2>
+            <div class="text-gray-700 max-w-3xl mx-auto text-center">
+                <p class="mb-6">At Sweet Bliss, our leadership team provides the strategic direction and operational excellence that drive our company forward. With deep expertise in FMCG and international trade, they ensure that Sweet Bliss consistently delivers value, quality, and trust to its partners.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                    <div class="text-center">
+                        <div class="text-3xl mb-2">🎯</div>
+                        <h3 class="font-semibold text-blue-900 mb-2">Strategic Vision</h3>
+                        <p class="text-sm">Forward-thinking leadership that anticipates market trends</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-2">⚡</div>
+                        <h3 class="font-semibold text-blue-900 mb-2">Operational Excellence</h3>
+                        <p class="text-sm">Efficient processes and quality management systems</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-2">🤝</div>
+                        <h3 class="font-semibold text-blue-900 mb-2">Partnership Focus</h3>
+                        <p class="text-sm">Building lasting relationships with all stakeholders</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="text-center bg-gray-50 rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Work with Our Team</h2>
+            <p class="text-gray-600 mb-6">Ready to partner with Sweet Bliss? Our experienced team is here to help your business grow.</p>
+            <a href="/contact/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                Contact Our Team
+            </a>
+        </section>
+    </div>
+</div>
+{% endblock %}

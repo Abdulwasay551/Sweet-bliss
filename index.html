@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Bliss - Premium FMCG Distribution | Bringing Global Brands to Pakistan</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b77ad;
+            --accent-color: #3182ce;
+            --success-color: #38a169;
+            --warning-color: #d69e2e;
+            --error-color: #e53e3e;
+            --neutral-50: #f7fafc;
+            --neutral-100: #edf2f7;
+            --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e0;
+            --neutral-400: #a0aec0;
+            --neutral-500: #718096;
+            --neutral-600: #4a5568;
+            --neutral-700: #2d3748;
+            --neutral-800: #1a202c;
+            --neutral-900: #171923;
+            --gradient-primary: linear-gradient(135deg, #1a365d 0%, #2b77ad 100%);
+            --gradient-accent: linear-gradient(135deg, #3182ce 0%, #2c5aa0 100%);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.15), 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--neutral-700);
+            overflow-x: hidden;
+            background: var(--neutral-50);
+        }
+
+        /* Professional Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--neutral-200);
+            padding: 1rem 5%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-100px);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: scale(0.5);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links li {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--neutral-700);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient-accent);
+            transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Professional Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" patternUnits="userSpaceOnUse" width="10" height="10"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(100px) scale(0.8);
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateX(-100px);
+            color: rgba(255,255,255,0.9);
+        }
+
+        .hero .subtext {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            margin-bottom: 3rem;
+            opacity: 0;
+            line-height: 1.7;
+            transform: translateX(100px);
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            background: rgba(255,255,255,0.95);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px) scale(0.8);
+            border: 2px solid transparent;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(26,54,93,0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-xl);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Professional Sections */
+        section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            margin: 1.5rem auto;
+            border-radius: 2px;
+            transition: width 0.8s ease;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--neutral-600);
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(30px);
+            line-height: 1.6;
+        }
+
+        /* Professional Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(100px) scale(0.9);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .product-card p {
+            color: var(--neutral-600);
+            line-height: 1.6;
+        }
+
+        .product-card .product-logo {
+            width: 140px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            transition: transform 0.4s ease;
+            background: var(--neutral-50);
+            border: 2px solid var(--neutral-100);
+            padding: 1rem;
+        }
+
+        .product-card:hover .product-logo {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .product-card .product-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.1));
+        }
+
+        .since-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            transform: rotate(15deg) scale(0);
+            transition: all 0.4s ease;
+        }
+
+        .product-card:hover .since-badge {
+            transform: rotate(10deg) scale(1);
+        }
+
+        /* Professional About Section */
+        .about-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-100);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--neutral-600);
+            transform: translateX(-100px);
+        }
+
+        .about-text h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+        .about-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            transition: width 0.6s ease;
+            border-radius: 2px;
+        }
+
+        .about-visual {
+            background: var(--gradient-primary);
+            border-radius: 25px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            transform: translateX(100px) rotate(5deg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+
+        /* Professional Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            color: var(--neutral-700);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(80px) scale(0.9);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-100);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            color: white;
+        }
+
+        .feature-card .icon {
+            width: 80px;
+            height: 80px;
+            background: var(--neutral-100);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transform: scale(0) rotate(180deg);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card:hover .icon {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1) rotate(0deg);
+        }
+
+        .feature-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card p {
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Professional Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(100px) scale(0.9);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--neutral-100);
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(26,54,93,0.05), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .team-card .avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+            transform: scale(0) rotate(180deg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-card:hover .avatar {
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .team-card p {
+            color: var(--neutral-600);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .team-card p strong {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Professional Brand Showcase */
+        .brand-showcase {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-100);
+        }
+
+        .brand-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .brand-tag {
+            padding: 1rem 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: scale(0) rotate(45deg);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .brand-tag:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .brand-tag.secondary {
+            background: var(--gradient-accent);
+        }
+
+        /* Professional Portfolio Categories */
+        .portfolio-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(80px) scale(0.9);
+            border: 1px solid var(--neutral-100);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .category-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .product-tag {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: scale(0) rotate(45deg);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-tag:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Professional Contact Section */
+        .contact-section {
+            background: var(--neutral-50);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-100);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            opacity: 0;
+            transform: translateX(-100px) scale(0.9);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2rem;
+            font-size: 1.75rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            line-height: 1.6;
+        }
+
+        .contact-item .icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.25rem;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            transform: translateX(100px) scale(0.9);
+            border: 1px solid var(--neutral-100);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.75rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--neutral-700);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.25rem;
+            border: 2px solid var(--neutral-200);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            background: var(--neutral-50);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(43,119,173,0.1);
+        }
+
+        .submit-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 1.25rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            box-shadow: var(--shadow-md);
+            font-family: inherit;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Professional Footer */
+        footer {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 5% 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100px);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-tagline {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Professional CTA Section */
+        .cta-section {
+            background: var(--gradient-accent);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Floating particles for background animation */
+        .floating-particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .products-grid,
+            .team-grid,
+            .portfolio-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section,
+            .contact-section {
+                padding: 2rem;
+            }
+
+            .brand-grid {
+                gap: 1rem;
+            }
+
+            .brand-tag {
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Professional loading animations */
+    </style>
+</head>
+<body>
+    <!-- Professional Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Sweet Bliss</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Professional Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Sweet Bliss</h1>
+            <div class="tagline">Bringing Sweet Moments Closer to You</div>
+            <div class="subtext">
+                At Sweet Bliss, we carefully source the finest confectionery brands from around the world, 
+                delivering premium FMCG products that create joy, flavor, and unforgettable experiences for customers across Pakistan.
+            </div>
+            <a href="#contact" class="cta-button">
+                <span>Partner with Us</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section>
+        <h2 class="section-title">Featured Products</h2>
+        <div class="section-subtitle">Premium imported brands that customers recognize and love worldwide</div>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="since-badge">Premium Brand</div>
+                <div class="product-logo">
+                    <img src="https://static.cdnlogo.com/logos/p/91/pringles.svg" alt="Pringles Logo">
+                </div>
+                <h3>Pringles</h3>
+                <p>Premium stackable potato crisps in various flavors. The world's favorite stackable snack, offering consistent quality and taste in every can.</p>
+            </div>
+
+            <div class="product-card">
+                <div class="since-badge">Premium Brand</div>
+                <div class="product-logo">
+                    <img src="https://static.cdnlogo.com/logos/j/43/jacobs.svg" alt="Jacobs Coffee Logo">
+                </div>
+                <h3>Jacobs Coffee</h3>
+                <p>Rich, aromatic coffee blends from a globally trusted brand. Experience the perfect balance of flavor and aroma in every cup.</p>
+            </div>
+
+            <div class="product-card">
+                <div class="since-badge">Premium Brand</div>
+                <div class="product-logo">
+                    <img src="https://icon2.cleanpng.com/20180613/jyu/aa7jy41qz.webp" alt="Rani Logo" style="max-width: 90%; max-height: 90%;">
+                </div>
+                <h3>Rani Juice & Can</h3>
+                <p>Refreshing fruit juices and beverages in multiple flavors. Natural taste and quality ingredients make it a customer favorite.</p>
+            </div>
+
+            <div class="product-card">
+                <div class="since-badge">Premium Brand</div>
+                <div class="product-logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-5K6xsLbehLxo93H287-vAptYLlh-L0TM7A&s" alt="Barbican Logo" style="max-width: 90%; max-height: 90%;">
+                </div>
+                <h3>Barbican</h3>
+                <p>Premium non-alcoholic malt beverages in multiple flavors. A refreshing alternative that combines great taste with quality ingredients.</p>
+            </div>
+
+            <div class="product-card">
+                <div class="since-badge">Premium Brand</div>
+                <div class="product-logo">
+                    <img src="https://static.cdnlogo.com/logos/k/8/kitkat_800.png" alt="KitKat Logo">
+                </div>
+                <h3>KitKat</h3>
+                <p>Iconic chocolate wafer bars beloved worldwide. The perfect combination of crispy wafer and smooth milk chocolate that brings moments of joy.</p>
+            </div>
+
+            <div class="product-card">
+                <div class="since-badge">Premium Brand</div>
+                <div class="product-logo">
+                    <img src="https://static.cdnlogo.com/logos/n/20/nestle_800.png" alt="Nestlé Logo">
+                </div>
+                <h3>Nestlé Products</h3>
+                <p>Wide range of confectionery and beverage products from the global leader. Trusted quality and innovation in every product category.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-section">
+        <h2 class="section-title">About Sweet Bliss</h2>
+        <div class="section-subtitle">FMCG Importer and Distributor - Connecting global brands with local markets across Pakistan</div>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Mission</h3>
+                <p>At Sweet Bliss, our mission is to connect retailers and distributors with the world's most trusted confectionery and beverage brands. We believe in delivering not only high-quality products but also consistent value that strengthens our partners' businesses and delights end consumers.</p>
+                
+                <h3>Our Vision</h3>
+                <p>We aim to become a leading name in global confectionery and beverage imports, recognized for our reliability, product variety, and ability to anticipate evolving market trends. By bridging global brands with local markets, we help our partners stay competitive and grow.</p>
+                
+                <h3>What We Do</h3>
+                <p>At Sweet Bliss, we specialize in importing and distributing premium FMCG and confectionery products. Our diverse portfolio includes chocolates, candies, gums, snacks, coffee, and beverages — carefully selected to meet the needs of supermarkets, retailers, and wholesalers across Pakistan.</p>
+                
+                <p>We focus on building strong partnerships with global manufacturers and trusted distributors, ensuring that every product we deliver adds value to your shelves and satisfaction to your customers.</p>
+            </div>
+            
+            <div class="about-visual">
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🌍</div>
+                    <div style="font-size: 1.4rem; font-weight: 600;">Global FMCG</div>
+                    <div style="font-size: 1.1rem; font-weight: 400;">Distribution Excellence</div>
+                    <div style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">Connecting Brands Worldwide</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Global Brands Showcase -->
+        <div class="brand-showcase">
+            <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 1rem; font-family: 'Poppins', sans-serif; font-weight: 600;">Global Brands We Import</h3>
+            <div class="brand-grid">
+                <span class="brand-tag">Nestlé</span>
+                <span class="brand-tag">Mars Wrigley</span>
+                <span class="brand-tag">Ferrero</span>
+                <span class="brand-tag">Perfetti Van Melle</span>
+                <span class="brand-tag">Mondelez International</span>
+                <span class="brand-tag secondary">Kellanova</span>
+                <span class="brand-tag secondary">JDE Peet's</span>
+                <span class="brand-tag secondary">Aujan Coca-Cola Beverages</span>
+                <span class="brand-tag secondary">Bavaria N.V.</span>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">🍫</div>
+                <h3>Premium Imported Brands</h3>
+                <p>Carefully curated portfolio from world-renowned manufacturers, ensuring quality and authenticity in every product we distribute.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏆</div>
+                <h3>Quality & Authenticity</h3>
+                <p>Every product is sourced with care, ensuring authenticity, freshness, and the highest quality standards for customer satisfaction.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🚚</div>
+                <h3>Reliable Distribution</h3>
+                <p>Seamless distribution network covering supermarkets, retailers, and wholesalers across Pakistan with efficient logistics management.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🤝</div>
+                <h3>Lasting Partnerships</h3>
+                <p>Building strong relationships with global suppliers and local partners for mutual growth, trust, and long-term business success.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3 style="margin-bottom: 1rem; font-size: 1.75rem; font-family: 'Poppins', sans-serif;">Our Services at a Glance</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📦</div>
+                    <h4 style="margin-bottom: 0.5rem; font-weight: 600;">Importing Premium FMCG</h4>
+                    <p style="opacity: 0.9;">Sourcing the finest confectionery brands from global markets with quality assurance.</p>
+                </div>
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🏪</div>
+                    <h4 style="margin-bottom: 0.5rem; font-weight: 600;">Retail Distribution</h4>
+                    <p style="opacity: 0.9;">Reliable supply chain management for supermarkets, retailers, and wholesalers.</p>
+                </div>
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🌐</div>
+                    <h4 style="margin-bottom: 0.5rem; font-weight: 600;">Global Partnerships</h4>
+                    <p style="opacity: 0.9;">Building lasting relationships with international suppliers and local business partners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <h2 class="section-title">Meet Our Leadership Team</h2>
+        <div class="section-subtitle">Experienced professionals providing strategic direction and operational excellence</div>
+        
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="avatar">SG</div>
+                <h3>Sheraz Gulzar</h3>
+                <p><strong>Chief Executive Officer (CEO)</strong></p>
+                <p>Provides overall vision, strategic leadership, and direction to position Sweet Bliss as a trusted name in global confectionery and FMCG imports. Leading the company towards sustainable growth and market expansion.</p>
+            </div>
+            <div class="team-card">
+                <div class="avatar">AA</div>
+                <h3>Azan Anwar</h3>
+                <p><strong>Chief Operating Officer (COO)</strong></p>
+                <p>Responsible for operational efficiency, logistics, and supply chain management to ensure seamless distribution across markets. Focuses on process optimization and customer satisfaction.</p>
+            </div>
+            <div class="team-card">
+                <div class="avatar">MH</div>
+                <h3>Mowahid Hassan</h3>
+                <p><strong>Chief Operating Officer (COO)</strong></p>
+                <p>Focuses on operational strategy, process improvement, and maintaining the highest standards of reliability and customer satisfaction. Ensures quality control and service excellence.</p>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h3>Our Leadership Commitment</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 0; opacity: 0.95;">Together, our leadership team ensures that Sweet Bliss remains a reliable partner for retailers, distributors, and global suppliers alike, driving value, quality, and trust in every partnership we build.</p>
+        </div>
+    </section>
+
+    <!-- Product Portfolio Section -->
+    <section id="products">
+        <h2 class="section-title">Product Portfolio</h2>
+        <div class="section-subtitle">Comprehensive range of premium FMCG and confectionery products from trusted global brands</div>
+        
+        <div class="portfolio-categories">
+            <div class="category-card">
+                <h3>Snacks & Crisps</h3>
+                <div class="product-list">
+                    <span class="product-tag">Pringles</span>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <h3>Chocolates & Confectionery</h3>
+                <div class="product-list">
+                    <span class="product-tag">KitKat</span>
+                    <span class="product-tag">M&M</span>
+                    <span class="product-tag">Bounty</span>
+                    <span class="product-tag">Mars</span>
+                    <span class="product-tag">Snickers</span>
+                    <span class="product-tag">Twix</span>
+                    <span class="product-tag">Kinder Joy</span>
+                    <span class="product-tag">Rafalo</span>
+                    <span class="product-tag">Rocher</span>
+                    <span class="product-tag">Kinder Choc</span>
+                    <span class="product-tag">Nutella</span>
+                    <span class="product-tag">Polo 12g</span>
+                    <span class="product-tag">Fox Candy 90gm</span>
+                    <span class="product-tag">Mentos</span>
+                    <span class="product-tag">Frutella</span>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <h3>Coffee & Hot Beverages</h3>
+                <div class="product-list">
+                    <span class="product-tag">Jacobs Coffee</span>
+                    <span class="product-tag">Coffee Classic</span>
+                    <span class="product-tag">Coffee Gold</span>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <h3>Gum & Chewing Products</h3>
+                <div class="product-list">
+                    <span class="product-tag">Fusion Gum</span>
+                    <span class="product-tag">Spout Gum</span>
+                    <span class="product-tag">Trident Gum</span>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <h3>Beverages & Drinks</h3>
+                <div class="product-list">
+                    <span class="product-tag">Barbican</span>
+                    <span class="product-tag">Rani Juice</span>
+                    <span class="product-tag">Rani Can</span>
+                    <span class="product-tag">3 Horses</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3>Our Product Commitment</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem; opacity: 0.95;">Every product we deliver is sourced with care, ensuring authenticity, freshness, and quality that meets international standards.</p>
+            <p style="font-size: 1rem; margin-bottom: 0; opacity: 0.9;">At Sweet Bliss, our goal is not just to supply shelves — but to support our partners with a portfolio that creates impact, drives sales, and builds customer loyalty.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="section-subtitle">Ready to partner with us? Let's build a successful business relationship together</div>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <div class="contact-item">
+                    <div class="icon">📍</div>
+                    <div>
+                        <strong>Office Address:</strong><br>
+                        05-231, Ravi Park<br>
+                        Minar-e-Pakistan<br>
+                        Lahore, Punjab, Pakistan
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📞</div>
+                    <div>
+                        <strong>Phone:</strong><br>
+                        +92-315-7680420
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">✉️</div>
+                    <div>
+                        <strong>Email:</strong><br>
+                        azan@sweetbliss.pk
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🤝</div>
+                    <div>
+                        <strong>Business Focus:</strong><br>
+                        Wholesale Inquiries<br>
+                        Partnership Opportunities<br>
+                        FMCG Distribution
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Wholesale Inquiry Form</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company/Business Name *</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="business-type">Business Type</label>
+                        <select id="business-type" name="business-type">
+                            <option value="">Select Business Type</option>
+                            <option value="retailer">Retailer</option>
+                            <option value="wholesaler">Wholesaler</option>
+                            <option value="supermarket">Supermarket Chain</option>
+                            <option value="distributor">Distributor</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message / Product Inquiry</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Please specify which products you're interested in and your wholesale requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Wholesale Inquiry</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h3 style="margin-bottom: 1rem;">Partner with Sweet Bliss</h3>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem; font-weight: 500;">"Partner with us to bring world-class flavors to your customers."</p>
+            <p style="opacity: 0.9;">At Sweet Bliss, we are committed to building strong and lasting business partnerships. Contact us for wholesale inquiries, product information, or partnership opportunities that drive mutual success.</p>
+        </div>
+    </section>
+
+    <!-- Professional Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Sweet Bliss</div>
+            <div class="footer-tagline">Bringing Sweet Moments Closer to You</div>
+            <div style="margin-bottom: 2rem; opacity: 0.9; font-size: 1rem;">
+                <p style="margin-bottom: 0.5rem;"><strong>FMCG Importer and Distributor</strong> | Premium Confectionery & Beverages</p>
+                <p>Lahore, Punjab, Pakistan | Email: azan@sweetbliss.pk | Phone: +92-315-7680420</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sweet Bliss. All rights reserved. | Trusted Partner for Global Confectionery Brands | Connecting World-Class Products with Local Markets</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating particles for background animation -->
+    <div id="particles-container"></div>
+
+    <script>
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all animations
+            initNavAnimation();
+            initHeroAnimations();
+            initScrollAnimations();
+            initParticleBackground();
+            initInteractiveEffects();
+        });
+
+        // Professional Navigation Animation
+        function initNavAnimation() {
+            // Animate navbar entrance
+            anime({
+                targets: '#navbar',
+                translateY: ['-100px', '0px'],
+                opacity: [0, 1],
+                duration: 1200,
+                easing: 'easeOutExpo',
+                delay: 300
+            });
+
+            // Animate logo
+            anime({
+                targets: '.logo',
+                scale: [0.5, 1],
+                opacity: [0, 1],
+                duration: 1000,
+                easing: 'easeOutBack',
+                delay: 600
+            });
+
+            // Animate navigation links
+            anime({
+                targets: '.nav-links li',
+                translateY: ['-20px', '0px'],
+                opacity: [0, 1],
+                duration: 800,
+                easing: 'easeOutExpo',
+                delay: anime.stagger(120, {start: 800})
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Professional Hero Section Animations
+        function initHeroAnimations() {
+            const timeline = anime.timeline({
+                easing: 'easeOutExpo',
+            });
+
+            // Hero title animation
+            timeline.add({
+                targets: '.hero h1',
+                translateY: ['100px', '0px'],
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 1400,
+                delay: 400
+            });
+
+            // Tagline animation
+            timeline.add({
+                targets: '.hero .tagline',
+                translateX: ['-100px', '0px'],
+                opacity: [0, 1],
+                duration: 1000,
+                offset: '-=800'
+            });
+
+            // Subtext animation
+            timeline.add({
+                targets: '.hero .subtext',
+                translateX: ['100px', '0px'],
+                opacity: [0, 1],
+                duration: 1000,
+                offset: '-=600'
+            });
+
+            // CTA button animation
+            timeline.add({
+                targets: '.cta-button',
+                translateY: ['50px', '0px'],
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 800,
+                offset: '-=400'
+            });
+
+            // Add floating animation to CTA button
+            anime({
+                targets: '.cta-button',
+                translateY: ['-3px', '3px'],
+                duration: 2500,
+                direction: 'alternate',
+                loop: true,
+                easing: 'easeInOutSine',
+                delay: 2500
+            });
+        }
+
+        // Enhanced scroll-triggered animations
+        function initScrollAnimations() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateElement(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.section-title').forEach(el => observer.observe(el));
+            document.querySelectorAll('.section-subtitle').forEach(el => observer.observe(el));
+            document.querySelectorAll('.product-card').forEach(el => observer.observe(el));
+            document.querySelectorAll('.feature-card').forEach(el => observer.observe(el));
+            document.querySelectorAll('.team-card').forEach(el => observer.observe(el));
+            document.querySelectorAll('.category-card').forEach(el => observer.observe(el));
+            document.querySelectorAll('.about-content').forEach(el => observer.observe(el));
+            document.querySelectorAll('.contact-content').forEach(el => observer.observe(el));
+            document.querySelectorAll('.brand-tag').forEach(el => observer.observe(el));
+            document.querySelectorAll('footer').forEach(el => observer.observe(el));
+        }
+
+        // Enhanced animate individual elements
+        function animateElement(element) {
+            if (element.classList.contains('section-title')) {
+                anime({
+                    targets: element,
+                    translateY: ['50px', '0px'],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutExpo'
+                });
+                
+                // Animate the underline
+                setTimeout(() => {
+                    element.classList.add('animate-title');
+                }, 500);
+            }
+
+            if (element.classList.contains('section-subtitle')) {
+                anime({
+                    targets: element,
+                    translateY: ['30px', '0px'],
+                    opacity: [0, 1],
+                    duration: 800,
+                    easing: 'easeOutExpo',
+                    delay: 200
+                });
+            }
+
+            if (element.classList.contains('product-card')) {
+                const delay = Array.from(element.parentNode.children).indexOf(element) * 150;
+                
+                anime({
+                    targets: element,
+                    translateY: ['100px', '0px'],
+                    scale: [0.9, 1],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutBack',
+                    delay: delay
+                });
+
+                // Animate since badge
+                anime({
+                    targets: element.querySelector('.since-badge'),
+                    scale: [0, 1],
+                    rotate: ['45deg', '15deg'],
+                    opacity: [0, 1],
+                    duration: 600,
+                    easing: 'easeOutBack',
+                    delay: delay + 600
+                });
+            }
+
+            if (element.classList.contains('feature-card')) {
+                const delay = Array.from(element.parentNode.children).indexOf(element) * 200;
+                
+                anime({
+                    targets: element,
+                    translateY: ['80px', '0px'],
+                    scale: [0.9, 1],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutExpo',
+                    delay: delay
+                });
+
+                // Animate icon
+                anime({
+                    targets: element.querySelector('.icon'),
+                    scale: [0, 1],
+                    rotate: ['180deg', '0deg'],
+                    duration: 800,
+                    easing: 'easeOutBack',
+                    delay: delay + 400
+                });
+            }
+
+            if (element.classList.contains('team-card')) {
+                const delay = Array.from(element.parentNode.children).indexOf(element) * 200;
+                
+                anime({
+                    targets: element,
+                    translateY: ['100px', '0px'],
+                    scale: [0.9, 1],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutExpo',
+                    delay: delay
+                });
+
+                // Animate avatar
+                anime({
+                    targets: element.querySelector('.avatar'),
+                    scale: [0, 1],
+                    rotate: ['180deg', '0deg'],
+                    duration: 800,
+                    easing: 'easeOutBack',
+                    delay: delay + 500
+                });
+            }
+
+            if (element.classList.contains('category-card')) {
+                const delay = Array.from(element.parentNode.children).indexOf(element) * 150;
+                
+                anime({
+                    targets: element,
+                    translateY: ['80px', '0px'],
+                    scale: [0.9, 1],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutBack',
+                    delay: delay
+                });
+
+                // Animate product tags
+                anime({
+                    targets: element.querySelectorAll('.product-tag'),
+                    scale: [0, 1],
+                    rotate: ['45deg', '0deg'],
+                    opacity: [0, 1],
+                    duration: 500,
+                    easing: 'easeOutBack',
+                    delay: anime.stagger(80, {start: delay + 600})
+                });
+            }
+
+            if (element.classList.contains('about-content')) {
+                // Animate about text
+                anime({
+                    targets: element.querySelector('.about-text'),
+                    translateX: ['-100px', '0px'],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutExpo'
+                });
+
+                // Animate about visual
+                anime({
+                    targets: element.querySelector('.about-visual'),
+                    translateX: ['100px', '0px'],
+                    rotate: ['5deg', '0deg'],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutExpo',
+                    delay: 200
+                });
+
+                // Animate h3 underlines
+                setTimeout(() => {
+                    element.querySelectorAll('.about-text h3').forEach(h3 => {
+                        h3.classList.add('animate-underline');
+                    });
+                }, 800);
+            }
+
+            if (element.classList.contains('contact-content')) {
+                // Animate contact info
+                anime({
+                    targets: element.querySelector('.contact-info'),
+                    translateX: ['-100px', '0px'],
+                    scale: [0.9, 1],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutExpo'
+                });
+
+                // Animate contact form
+                anime({
+                    targets: element.querySelector('.contact-form'),
+                    translateX: ['100px', '0px'],
+                    scale: [0.9, 1],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutExpo',
+                    delay: 200
+                });
+
+                // Animate contact items
+                anime({
+                    targets: element.querySelectorAll('.contact-item'),
+                    translateX: ['-50px', '0px'],
+                    opacity: [0, 1],
+                    duration: 600,
+                    easing: 'easeOutExpo',
+                    delay: anime.stagger(100, {start: 600})
+                });
+
+                // Animate form groups
+                anime({
+                    targets: element.querySelectorAll('.form-group'),
+                    translateY: ['30px', '0px'],
+                    opacity: [0, 1],
+                    duration: 600,
+                    easing: 'easeOutExpo',
+                    delay: anime.stagger(100, {start: 800})
+                });
+
+                // Animate submit button
+                anime({
+                    targets: element.querySelector('.submit-btn'),
+                    translateY: ['30px', '0px'],
+                    scale: [0.9, 1],
+                    opacity: [0, 1],
+                    duration: 600,
+                    easing: 'easeOutBack',
+                    delay: 1200
+                });
+            }
+
+            if (element.classList.contains('brand-tag')) {
+                const delay = Array.from(element.parentNode.children).indexOf(element) * 100;
+                
+                anime({
+                    targets: element,
+                    scale: [0, 1],
+                    rotate: ['45deg', '0deg'],
+                    opacity: [0, 1],
+                    duration: 500,
+                    easing: 'easeOutBack',
+                    delay: delay
+                });
+            }
+
+            if (element.tagName === 'FOOTER') {
+                anime({
+                    targets: element,
+                    translateY: ['100px', '0px'],
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutExpo'
+                });
+            }
+        }
+
+        // Enhanced particle background animation
+        function initParticleBackground() {
+            const particlesContainer = document.getElementById('particles-container');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                createFloatingParticle();
+            }
+
+            function createFloatingParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'floating-particle';
+                
+                const size = Math.random() * 4 + 2;
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * window.innerHeight;
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = startX + 'px';
+                particle.style.top = startY + 'px';
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
+                
+                particlesContainer.appendChild(particle);
+                
+                // Animate particle
+                anime({
+                    targets: particle,
+                    translateX: () => anime.random(-150, 150),
+                    translateY: () => anime.random(-150, 150),
+                    scale: [1, Math.random() * 1.5 + 0.5],
+                    opacity: [particle.style.opacity, 0],
+                    duration: () => anime.random(4000, 8000),
+                    easing: 'easeInOutSine',
+                    direction: 'alternate',
+                    loop: true
+                });
+            }
+        }
+
+        // Enhanced interactive effects
+        function initInteractiveEffects() {
+            // Enhanced button hover effects
+            document.querySelectorAll('.cta-button, .submit-btn').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    anime({
+                        targets: this,
+                        scale: 1.05,
+                        duration: 300,
+                        easing: 'easeOutExpo'
+                    });
+                });
+
+                button.addEventListener('mouseleave', function() {
+                    anime({
+                        targets: this,
+                        scale: 1,
+                        duration: 300,
+                        easing: 'easeOutExpo'
+                    });
+                });
+            });
+
+            // Enhanced product card hover effects
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    anime({
+                        targets: this.querySelector('.product-logo'),
+                        scale: 1.1,
+                        rotate: '3deg',
+                        duration: 400,
+                        easing: 'easeOutExpo'
+                    });
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    anime({
+                        targets: this.querySelector('.product-logo'),
+                        scale: 1,
+                        rotate: '0deg',
+                        duration: 400,
+                        easing: 'easeOutExpo'
+                    });
+                });
+            });
+
+            // Enhanced form focus animations
+            document.querySelectorAll('input, textarea, select').forEach(input => {
+                input.addEventListener('focus', function() {
+                    anime({
+                        targets: this,
+                        scale: 1.02,
+                        duration: 200,
+                        easing: 'easeOutExpo'
+                    });
+                });
+
+                input.addEventListener('blur', function() {
+                    anime({
+                        targets: this,
+                        scale: 1,
+                        duration: 200,
+                        easing: 'easeOutExpo'
+                    });
+                });
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offset = 100; // Account for fixed navbar
+                        const targetPosition = target.offsetTop - offset;
+                        
+                        anime({
+                            targets: document.scrollingElement || document.documentElement,
+                            scrollTop: targetPosition,
+                            duration: 1200,
+                            easing: 'easeInOutExpo'
+                        });
+                    }
+                });
+            });
+
+            // Brand tag hover effects
+            document.querySelectorAll('.brand-tag, .product-tag').forEach(tag => {
+                tag.addEventListener('mouseenter', function() {
+                    anime({
+                        targets: this,
+                        scale: 1.05,
+                        translateY: '-2px',
+                        duration: 200,
+                        easing: 'easeOutExpo'
+                    });
+                });
+
+                tag.addEventListener('mouseleave', function() {
+                    anime({
+                        targets: this,
+                        scale: 1,
+                        translateY: '0px',
+                        duration: 200,
+                        easing: 'easeOutExpo'
+                    });
+                });
+            });
+        }
+
+        // Professional Easter egg animation
+        let clickCount = 0;
+        document.querySelector('.logo').addEventListener('click', function() {
+            clickCount++;
+            if (clickCount >= 5) {
+                // Secret professional animation
+                anime({
+                    targets: '.floating-particle',
+                    scale: [1, 2.5],
+                    opacity: [0.1, 0.6],
+                    rotate: '720deg',
+                    duration: 1500,
+                    easing: 'easeOutElastic(1, .8)',
+                    direction: 'alternate',
+                    complete: function() {
+                        // Reset particles
+                        anime({
+                            targets: '.floating-particle',
+                            scale: 1,
+                            opacity: 0.1,
+                            rotate: '0deg',
+                            duration: 1000,
+                            easing: 'easeOutExpo'
+                        });
+                    }
+                });
+                clickCount = 0;
+            }
+        });
+    </script>
+</body>
+</html>

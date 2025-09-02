@@ -1,0 +1,110 @@
+{% load wagtailcore_tags wagtailsettings_tags %}
+{% get_settings %}
+
+<!-- Professional Navigation -->
+<nav id="navbar" class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="/" class="logo-link">{{ settings.seo.GlobalSEOSettings.site_name|default:"Sweet Bliss" }}</a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-btn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- Navigation links -->
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/products/">Products</a></li>
+            <li><a href="/team/">Team</a></li>
+            <li><a href="/contact/">Contact Us</a></li>
+        </ul>
+        
+        <!-- Search functionality -->
+        <div class="nav-search">
+            <form class="search-form" action="/search/" method="get">
+                <input type="search" name="q" placeholder="Search products..." class="search-input">
+                <button type="submit" class="search-btn" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Mobile navigation menu -->
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/products/">Products</a></li>
+            <li><a href="/team/">Team</a></li>
+            <li><a href="/contact/">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Breadcrumbs for SEO -->
+{% if page.get_ancestors %}
+<nav class="breadcrumbs" aria-label="Breadcrumb navigation">
+    <div class="container">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="/">Home</a>
+            </li>
+            {% for ancestor in page.get_ancestors %}
+                {% if ancestor.show_in_menus %}
+                <li class="breadcrumb-item">
+                    <a href="{% pageurl ancestor %}">{{ ancestor.title }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            <li class="breadcrumb-item active" aria-current="page">
+                {{ page.title }}
+            </li>
+        </ol>
+    </div>
+</nav>
+{% endif %}
+
+<!-- Structured Data for Navigation -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    "name": "Main Navigation",
+    "url": [
+        {
+            "@type": "WebPage",
+            "name": "Home",
+            "url": "{{ request.scheme }}://{{ request.get_host }}/"
+        },
+        {
+            "@type": "WebPage", 
+            "name": "About Us",
+            "url": "{{ request.scheme }}://{{ request.get_host }}/about/"
+        },
+        {
+            "@type": "WebPage",
+            "name": "Products", 
+            "url": "{{ request.scheme }}://{{ request.get_host }}/products/"
+        },
+        {
+            "@type": "WebPage",
+            "name": "Team",
+            "url": "{{ request.scheme }}://{{ request.get_host }}/team/"
+        },
+        {
+            "@type": "WebPage",
+            "name": "Contact",
+            "url": "{{ request.scheme }}://{{ request.get_host }}/contact/"
+        }
+    ]
+}
+</script>

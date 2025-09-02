@@ -1,0 +1,509 @@
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailsettings_tags %}
+{% get_settings %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>{% block title_tag %}{{ page.effective_seo_title|default:page.title }} | {{ settings.seo.GlobalSEOSettings.site_name|default:"Sweet Bliss" }}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{{ page.effective_meta_description|default:settings.seo.GlobalSEOSettings.default_meta_description }}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{{ page.meta_keywords }}{% if page.meta_keywords %}, {% endif %}Sweet Bliss, FMCG, confectionery, distribution, Pakistan, global brands{% endblock %}">
+    <meta name="author" content="Sweet Bliss">
+    
+    <!-- Robots Meta Tag -->
+    <meta name="robots" content="{% block robots %}{{ page.robots_tag|default:'index, follow' }}{% endblock %}">
+    
+    <!-- Canonical URL -->
+    {% block canonical_url %}
+        {% if page.canonical_url %}
+            <link rel="canonical" href="{{ page.canonical_url }}">
+        {% else %}
+            <link rel="canonical" href="{{ page.get_full_url }}">
+        {% endif %}
+    {% endblock %}
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.get_full_url }}">
+    <meta property="og:title" content="{% block og_title %}{{ page.og_title|default:page.effective_seo_title|default:page.title }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ page.og_description|default:page.effective_meta_description }}{% endblock %}">
+    <meta property="og:site_name" content="{{ settings.seo.GlobalSEOSettings.site_name|default:'Sweet Bliss' }}">
+    
+    {% block og_image %}
+        {% if page.og_image %}
+            {% image page.og_image width-1200 height-630 as og_img %}
+            <meta property="og:image" content="{{ request.site.root_url }}{{ og_img.url }}">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="630">
+        {% elif settings.seo.GlobalSEOSettings.default_og_image %}
+            {% image settings.seo.GlobalSEOSettings.default_og_image width-1200 height-630 as default_og_img %}
+            <meta property="og:image" content="{{ request.site.root_url }}{{ default_og_img.url }}">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="630">
+        {% endif %}
+    {% endblock %}
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ page.twitter_title|default:page.effective_seo_title|default:page.title }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ page.twitter_description|default:page.effective_meta_description }}{% endblock %}">
+    
+    {% block twitter_image %}
+        {% if page.twitter_image %}
+            {% image page.twitter_image width-1200 height-600 as twitter_img %}
+            <meta name="twitter:image" content="{{ request.site.root_url }}{{ twitter_img.url }}">
+        {% elif page.og_image %}
+            {% image page.og_image width-1200 height-600 as twitter_og_img %}
+            <meta name="twitter:image" content="{{ request.site.root_url }}{{ twitter_og_img.url }}">
+        {% elif settings.seo.GlobalSEOSettings.default_og_image %}
+            {% image settings.seo.GlobalSEOSettings.default_og_image width-1200 height-600 as twitter_default_img %}
+            <meta name="twitter:image" content="{{ request.site.root_url }}{{ twitter_default_img.url }}">
+        {% endif %}
+    {% endblock %}
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "{% block schema_type %}{{ page.schema_type|default:'WebPage' }}{% endblock %}",
+        "name": "{{ page.title }}",
+        "description": "{{ page.effective_meta_description }}",
+        "url": "{{ page.get_full_url }}",
+        {% if settings.seo.GlobalSEOSettings.company_logo %}
+            {% image settings.seo.GlobalSEOSettings.company_logo original as logo_img %}
+            "image": "{{ request.site.root_url }}{{ logo_img.url }}",
+        {% endif %}
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ settings.seo.GlobalSEOSettings.company_name|default:'Sweet Bliss' }}",
+            "description": "{{ settings.seo.GlobalSEOSettings.company_description }}",
+            {% if settings.seo.GlobalSEOSettings.company_logo %}
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ request.site.root_url }}{{ logo_img.url }}"
+                },
+            {% endif %}
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "{{ settings.seo.GlobalSEOSettings.phone }}",
+                "email": "{{ settings.seo.GlobalSEOSettings.email }}",
+                "contactType": "Business"
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "Punjab",
+                "addressCountry": "PK",
+                "name": "{{ settings.seo.GlobalSEOSettings.address }}"
+            },
+            "sameAs": [
+                {% if settings.seo.GlobalSEOSettings.facebook_url %}"{{ settings.seo.GlobalSEOSettings.facebook_url }}"{% endif %}
+                {% if settings.seo.GlobalSEOSettings.twitter_url %}{% if settings.seo.GlobalSEOSettings.facebook_url %},{% endif %}"{{ settings.seo.GlobalSEOSettings.twitter_url }}"{% endif %}
+                {% if settings.seo.GlobalSEOSettings.linkedin_url %}{% if settings.seo.GlobalSEOSettings.facebook_url or settings.seo.GlobalSEOSettings.twitter_url %},{% endif %}"{{ settings.seo.GlobalSEOSettings.linkedin_url }}"{% endif %}
+                {% if settings.seo.GlobalSEOSettings.instagram_url %}{% if settings.seo.GlobalSEOSettings.facebook_url or settings.seo.GlobalSEOSettings.twitter_url or settings.seo.GlobalSEOSettings.linkedin_url %},{% endif %}"{{ settings.seo.GlobalSEOSettings.instagram_url }}"{% endif %}
+            ]
+        }
+        {% block extra_schema %},
+        "mainEntity": {
+            "@type": "WebSite",
+            "name": "{{ settings.seo.GlobalSEOSettings.site_name }}",
+            "url": "{{ request.site.root_url }}",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "{{ request.site.root_url }}/products/?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }{% endblock %}
+    }
+    </script>
+    
+    <!-- Search Engine Verification -->
+    {% if settings.seo.GlobalSEOSettings.google_site_verification %}
+        <meta name="google-site-verification" content="{{ settings.seo.GlobalSEOSettings.google_site_verification }}">
+    {% endif %}
+    
+    {% if settings.seo.GlobalSEOSettings.bing_site_verification %}
+        <meta name="msvalidate.01" content="{{ settings.seo.GlobalSEOSettings.bing_site_verification }}">
+    {% endif %}
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --dark-gradient: linear-gradient(135deg, #232526 0%, #414345 100%);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+        }
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Main content padding for non-homepage pages */
+        #main-content {
+            min-height: calc(100vh - 80px);
+        }
+
+        body:not(.template-homepage) #main-content {
+            padding-top: 100px;
+        }
+
+        .template-homepage #main-content {
+            padding-top: 0;
+        }
+        
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .glass-effect {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .hover-scale {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .hover-scale:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .nav-item {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-gradient);
+            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 2px;
+        }
+        
+        .nav-item:hover::before,
+        .nav-item.active::before {
+            left: 0;
+        }
+        
+        .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            color: white;
+        }
+        
+        .btn-primary:hover::before {
+            left: 0;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-gradient);
+            border: none;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 30px rgba(240, 147, 251, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.6);
+            color: white;
+        }
+        
+        .btn-secondary:hover::before {
+            left: 0;
+        }
+        
+        .card-hover {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            transition: left 0.6s ease;
+            z-index: 1;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) rotateX(2deg);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        
+        .card-hover:hover::before {
+            left: 0;
+        }
+        
+        .loading-animation {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .parallax-element {
+            will-change: transform;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
+            }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-gradient);
+        }
+        
+        .stagger-animation {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+    </style>
+    
+    <!-- Additional CSS -->
+    {% block extra_css %}{% endblock %}
+    
+    <!-- Google Tag Manager -->
+    {% if settings.seo.GlobalSEOSettings.google_tag_manager_id %}
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ settings.seo.GlobalSEOSettings.google_tag_manager_id }}');</script>
+    {% endif %}
+    
+    <!-- Google Analytics 4 -->
+    {% if settings.seo.GlobalSEOSettings.google_analytics_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.seo.GlobalSEOSettings.google_analytics_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ settings.seo.GlobalSEOSettings.google_analytics_id }}');
+    </script>
+    {% endif %}
+    
+    <!-- Facebook Pixel -->
+    {% if settings.seo.GlobalSEOSettings.facebook_pixel_id %}
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '{{ settings.seo.GlobalSEOSettings.facebook_pixel_id }}');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id={{ settings.seo.GlobalSEOSettings.facebook_pixel_id }}&ev=PageView&noscript=1"
+    /></noscript>
+    {% endif %}
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    
+    <!-- Google Tag Manager (noscript) -->
+    {% if settings.seo.GlobalSEOSettings.google_tag_manager_id %}
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ settings.seo.GlobalSEOSettings.google_tag_manager_id }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    {% endif %}
+    
+    <!-- Header -->
+    {% block header %}
+        {% include 'includes/header.html' %}
+    {% endblock %}
+    
+    <!-- Main Content -->
+    <main role="main" id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    {% block footer %}
+        {% include 'includes/footer.html' %}
+    {% endblock %}
+    
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Structured Data for Breadcrumbs -->
+    {% if page.get_ancestors.live %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "{{ request.site.root_url }}"
+            }
+            {% for ancestor in page.get_ancestors.live %}
+            ,{
+                "@type": "ListItem",
+                "position": {{ forloop.counter|add:1 }},
+                "name": "{{ ancestor.title }}",
+                "item": "{{ ancestor.get_full_url }}"
+            }
+            {% endfor %}
+            ,{
+                "@type": "ListItem",
+                "position": {{ page.get_ancestors.live.count|add:2 }},
+                "name": "{{ page.title }}"
+            }
+        ]
+    }
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-productspage{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Page Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ page.title }}</h1>
+            {% if page.introduction %}
+                <div class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    {{ page.introduction|richtext }}
+                </div>
+            {% endif %}
+        </header>
+
+        <!-- Product Categories -->
+        {% if categories %}
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Product Categories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for category in categories %}
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+                    <div class="text-4xl mb-4 text-center">{{ category.icon|default:"📦" }}</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">{{ category.name }}</h3>
+                    <p class="text-gray-600 text-center">{{ category.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Featured Brands -->
+        {% if brands %}
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Brands</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                {% for brand in brands %}
+                <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300 text-center">
+                    {% if brand.logo %}
+                        {% image brand.logo width-100 height-100 class="mx-auto mb-2" %}
+                    {% endif %}
+                    <h4 class="font-semibold text-gray-900">{{ brand.name }}</h4>
+                    {% if brand.country_of_origin %}
+                        <p class="text-sm text-gray-500">{{ brand.country_of_origin }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Quality Commitment -->
+        <section class="bg-blue-50 rounded-lg p-8 mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 text-center">Quality Commitment</h2>
+            <div class="text-gray-700 max-w-3xl mx-auto">
+                <p class="mb-4">Every product we distribute is sourced with care, ensuring authenticity, freshness, and quality. At Sweet Bliss, our goal is not just to supply shelves — but to support our partners with a portfolio that creates impact, drives sales, and builds customer loyalty.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div>
+                        <h3 class="font-semibold text-blue-900 mb-2">✓ Authentic Products</h3>
+                        <p class="text-sm">Direct sourcing from authorized manufacturers</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-blue-900 mb-2">✓ Quality Assurance</h3>
+                        <p class="text-sm">Rigorous quality checks and compliance</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-blue-900 mb-2">✓ Fresh Inventory</h3>
+                        <p class="text-sm">Optimal shelf life and proper storage</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-blue-900 mb-2">✓ Reliable Supply</h3>
+                        <p class="text-sm">Consistent availability and delivery</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="text-center bg-gray-50 rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to Stock Premium Products?</h2>
+            <p class="text-gray-600 mb-6">Contact us to learn more about our product portfolio and wholesale opportunities.</p>
+            <div class="space-x-4">
+                <a href="/contact/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                    Get Product Catalog
+                </a>
+                <a href="/partnerships/" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                    Become a Partner
+                </a>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

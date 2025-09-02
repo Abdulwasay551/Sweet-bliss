@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-portfoliopage{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Page Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ page.title }}</h1>
+            {% if page.introduction %}
+                <div class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    {{ page.introduction|richtext }}
+                </div>
+            {% endif %}
+        </header>
+
+        <!-- Product Categories -->
+        {% if categories %}
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Product Categories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for category in categories %}
+                <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition duration-300 text-center">
+                    <div class="text-5xl mb-6">{{ category.icon|default:"📦" }}</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">{{ category.name }}</h3>
+                    <p class="text-gray-600 mb-6">{{ category.description }}</p>
+                    <div class="pt-4 border-t border-gray-200">
+                        <span class="text-sm text-blue-600 font-medium">View Products →</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Featured Brands -->
+        {% if brands %}
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Premium Brands</h2>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8">
+                    {% for brand in brands %}
+                    <div class="text-center group">
+                        {% if brand.logo %}
+                            {% image brand.logo width-120 height-120 class="mx-auto mb-3 group-hover:scale-105 transition duration-300" %}
+                        {% else %}
+                            <div class="w-20 h-20 bg-gray-100 rounded-lg mx-auto mb-3 flex items-center justify-center">
+                                <span class="text-gray-400 font-bold text-lg">{{ brand.name|first }}</span>
+                            </div>
+                        {% endif %}
+                        <h4 class="font-semibold text-gray-900 text-sm">{{ brand.name }}</h4>
+                        {% if brand.country_of_origin %}
+                            <p class="text-xs text-gray-500 mt-1">{{ brand.country_of_origin }}</p>
+                        {% endif %}
+                        {% if brand.website_url %}
+                            <a href="{{ brand.website_url }}" target="_blank" class="text-xs text-blue-600 hover:text-blue-800 mt-1 inline-block">Visit Site</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Product Highlights -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Product Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6">
+                    <h3 class="font-semibold text-red-900 mb-2">🍫 Chocolates & Confectionery</h3>
+                    <p class="text-red-800 text-sm">Premium chocolate bars, candies, and sweet treats from world-renowned brands</p>
+                    <div class="mt-3 text-xs text-red-600">KitKat • Nutella • Mars • Snickers • Bounty</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6">
+                    <h3 class="font-semibold text-orange-900 mb-2">🍟 Snacks & Crisps</h3>
+                    <p class="text-orange-800 text-sm">Quality snack foods and crispy treats that customers love</p>
+                    <div class="mt-3 text-xs text-orange-600">Pringles • Lay's • Doritos • Premium Crisps</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
+                    <h3 class="font-semibold text-blue-900 mb-2">🥤 Beverages</h3>
+                    <p class="text-blue-800 text-sm">Refreshing drinks and beverage products for every occasion</p>
+                    <div class="mt-3 text-xs text-blue-600">Rani Juice • Barbican • Premium Sodas</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6">
+                    <h3 class="font-semibold text-green-900 mb-2">☕ Coffee & Hot Beverages</h3>
+                    <p class="text-green-800 text-sm">Premium coffee and hot drink products for coffee lovers</p>
+                    <div class="mt-3 text-xs text-green-600">Jacobs Coffee • Nescafé • Premium Blends</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
+                    <h3 class="font-semibold text-purple-900 mb-2">🍬 Gum & Chewing Products</h3>
+                    <p class="text-purple-800 text-sm">Chewing gum and related products from trusted brands</p>
+                    <div class="mt-3 text-xs text-purple-600">Trident • Mentos • Fusion Gum</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg p-6">
+                    <h3 class="font-semibold text-pink-900 mb-2">🎯 Specialty Items</h3>
+                    <p class="text-pink-800 text-sm">Unique and specialty products that set your store apart</p>
+                    <div class="mt-3 text-xs text-pink-600">Seasonal Items • Limited Editions</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quality Commitment -->
+        {% if page.quality_commitment %}
+        <section class="mb-12">
+            <div class="bg-blue-50 rounded-lg p-8">
+                {{ page.quality_commitment|richtext }}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Call to Action -->
+        <section class="text-center bg-gray-50 rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to Stock These Premium Brands?</h2>
+            <p class="text-gray-600 mb-6">Get detailed product catalogs, pricing information, and start building your partnership with Sweet Bliss today.</p>
+            <div class="space-x-4">
+                <a href="/contact/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                    Request Product Catalog
+                </a>
+                <a href="/partnerships/" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                    Partnership Inquiry
+                </a>
+                <a href="/services/" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                    Our Services
+                </a>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-aboutpage{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Page Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ page.title }}</h1>
+            {% if page.introduction %}
+                <div class="text-lg text-gray-600">
+                    {{ page.introduction|richtext }}
+                </div>
+            {% endif %}
+        </header>
+
+        <!-- Mission Section -->
+        {% if page.mission_content %}
+        <section class="mb-12">
+            <div class="bg-blue-50 rounded-lg p-8">
+                <h2 class="text-2xl font-bold text-blue-900 mb-4">Our Mission</h2>
+                <div class="text-gray-700">
+                    {{ page.mission_content|richtext }}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Vision Section -->
+        {% if page.vision_content %}
+        <section class="mb-12">
+            <div class="bg-green-50 rounded-lg p-8">
+                <h2 class="text-2xl font-bold text-green-900 mb-4">Our Vision</h2>
+                <div class="text-gray-700">
+                    {{ page.vision_content|richtext }}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Values Section -->
+        {% if page.values_content %}
+        <section class="mb-12">
+            <div class="bg-purple-50 rounded-lg p-8">
+                <h2 class="text-2xl font-bold text-purple-900 mb-4">What We Do</h2>
+                <div class="text-gray-700">
+                    {{ page.values_content|richtext }}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Call to Action -->
+        <section class="text-center bg-gray-50 rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Partner with Sweet Bliss</h2>
+            <p class="text-gray-600 mb-6">Ready to bring world-class flavors to your customers? Let's build a successful partnership together.</p>
+            <a href="/contact/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                Contact Us
+            </a>
+        </section>
+    </div>
+</div>
+{% endblock %}
