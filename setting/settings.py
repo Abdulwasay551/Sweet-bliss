@@ -30,10 +30,12 @@ is_development = os.environ.get('DEBUG', 'False')
 
 if is_development == 'False':
     DEBUG = False
+    ALLOWED_HOSTS = ['*']
 else:
     DEBUG = 'True'
+    ALLOWED_HOSTS = []
     
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
