@@ -35,22 +35,62 @@
         </section>
         {% endif %}
 
+        <!-- Business Partners -->
+        {% if partners %}
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Business Partners</h2>
+            <p class="text-center text-gray-600 mb-8">Global manufacturers and brands we import from</p>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+                    {% for partner in partners %}
+                    <div class="text-center group">
+                        {% if partner.logo_url %}
+                            <img src="{{ partner.logo_url }}" alt="{{ partner.name }}" class="w-20 h-20 mx-auto mb-3 object-contain group-hover:scale-105 transition duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-20 h-20 bg-gray-100 rounded-lg mx-auto mb-3 flex items-center justify-center" style="display:none;">
+                                <span class="text-gray-400 font-bold text-lg">{{ partner.name|slice:":2"|upper }}</span>
+                            </div>
+                        {% else %}
+                            <div class="w-20 h-20 bg-gray-100 rounded-lg mx-auto mb-3 flex items-center justify-center">
+                                <span class="text-gray-400 font-bold text-lg">{{ partner.name|slice:":2"|upper }}</span>
+                            </div>
+                        {% endif %}
+                        <h4 class="font-semibold text-gray-900 text-sm">{{ partner.name }}</h4>
+                        {% if partner.country_of_origin %}
+                            <p class="text-xs text-gray-500 mt-1">{{ partner.country_of_origin }}</p>
+                        {% endif %}
+                        {% if partner.website_url %}
+                            <a href="{{ partner.website_url }}" target="_blank" class="text-xs text-blue-600 hover:text-blue-800 mt-1 inline-block">Visit Site</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
         <!-- Featured Brands -->
         {% if brands %}
         <section class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Premium Brands</h2>
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Product Brands</h2>
+            <p class="text-center text-gray-600 mb-8">Specific brands and products in our portfolio</p>
             <div class="bg-white rounded-lg shadow-md p-8">
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8">
                     {% for brand in brands %}
                     <div class="text-center group">
-                        {% if brand.logo %}
-                            {% image brand.logo width-120 height-120 class="mx-auto mb-3 group-hover:scale-105 transition duration-300" %}
+                        {% if brand.logo_url %}
+                            <img src="{{ brand.logo_url }}" alt="{{ brand.name }}" class="w-20 h-20 mx-auto mb-3 object-contain group-hover:scale-105 transition duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-20 h-20 bg-gray-100 rounded-lg mx-auto mb-3 flex items-center justify-center" style="display:none;">
+                                <span class="text-gray-400 font-bold text-lg">{{ brand.name|slice:":2"|upper }}</span>
+                            </div>
                         {% else %}
                             <div class="w-20 h-20 bg-gray-100 rounded-lg mx-auto mb-3 flex items-center justify-center">
-                                <span class="text-gray-400 font-bold text-lg">{{ brand.name|first }}</span>
+                                <span class="text-gray-400 font-bold text-lg">{{ brand.name|slice:":2"|upper }}</span>
                             </div>
                         {% endif %}
                         <h4 class="font-semibold text-gray-900 text-sm">{{ brand.name }}</h4>
+                        {% if brand.partner %}
+                            <p class="text-xs text-gray-500 mt-1">by {{ brand.partner.name }}</p>
+                        {% endif %}
                         {% if brand.country_of_origin %}
                             <p class="text-xs text-gray-500 mt-1">{{ brand.country_of_origin }}</p>
                         {% endif %}

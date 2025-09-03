@@ -7,7 +7,7 @@
 <div class="container mx-auto px-4 py-8">
     <div class="max-w-6xl mx-auto">
         <!-- Page Header -->
-        <header class="text-center mb-12">
+        <header class="text-center mb-4">
             <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ page.title }}</h1>
             {% if page.introduction %}
                 <div class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -18,11 +18,11 @@
 
         <!-- Product Categories -->
         {% if categories %}
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Product Categories</h2>
+        <section class="mb-4">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">Product Categories</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {% for category in categories %}
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+                <div class="bg-gradient-to-tr from-white via-white to-transparent rounded-lg  p-12 hover:scale-105 hover:shadow-2xl transition duration-300">
                     <div class="text-4xl mb-4 text-center">{{ category.icon|default:"📦" }}</div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">{{ category.name }}</h3>
                     <p class="text-gray-600 text-center">{{ category.description }}</p>
@@ -34,15 +34,25 @@
 
         <!-- Featured Brands -->
         {% if brands %}
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Brands</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+        <section class="mb-4">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">Our Brands</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                 {% for brand in brands %}
-                <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300 text-center">
-                    {% if brand.logo %}
-                        {% image brand.logo width-100 height-100 class="mx-auto mb-2" %}
+                <div class="bg-white rounded-lg p-4 hover:shadow-2xl hover:scale-105 transition duration-300 text-center">
+                    {% if brand.logo_url %}
+                        <img src="{{ brand.logo_url }}" alt="{{ brand.name }}" class="w-36 h-36 mx-auto mb-2 object-contain " onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-36 h-36 bg-gray-100 rounded-lg mx-auto mb-2 flex items-center justify-center" style="display:none;">
+                            <span class="text-gray-400 font-bold">{{ brand.name|slice:":2"|upper }}</span>
+                        </div>
+                    {% else %}
+                        <div class="w-36 h-36 bg-gray-100 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                            <span class="text-gray-400 font-bold">{{ brand.name|slice:":2"|upper }}</span>
+                        </div>
                     {% endif %}
                     <h4 class="font-semibold text-gray-900">{{ brand.name }}</h4>
+                    {% if brand.partner %}
+                        <p class="text-xs text-gray-500">by {{ brand.partner.name }}</p>
+                    {% endif %}
                     {% if brand.country_of_origin %}
                         <p class="text-sm text-gray-500">{{ brand.country_of_origin }}</p>
                     {% endif %}
@@ -53,7 +63,7 @@
         {% endif %}
 
         <!-- Quality Commitment -->
-        <section class="bg-blue-50 rounded-lg p-8 mb-12">
+        <section class="bg-blue-50 rounded-lg p-8 mb-4">
             <h2 class="text-2xl font-bold text-blue-900 mb-4 text-center">Quality Commitment</h2>
             <div class="text-gray-700 max-w-3xl mx-auto">
                 <p class="mb-4">Every product we distribute is sourced with care, ensuring authenticity, freshness, and quality. At Sweet Bliss, our goal is not just to supply shelves — but to support our partners with a portfolio that creates impact, drives sales, and builds customer loyalty.</p>

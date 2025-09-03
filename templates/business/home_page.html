@@ -6,15 +6,44 @@
 {% block content %}
     <!-- Hero Section -->
     <section class="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Animated Background Elements -->
+        <!-- Enhanced Animated Background Elements -->
         <div class="absolute inset-0">
+            <!-- Floating Geometric Shapes -->
             <div class="floating-element floating-element-1"></div>
             <div class="floating-element floating-element-2"></div>
             <div class="floating-element floating-element-3"></div>
             <div class="floating-element floating-element-4"></div>
+            <div class="floating-element floating-element-5"></div>
+            <div class="floating-element floating-element-6"></div>
+            
+            <!-- Animated Gradient Orbs -->
+            <div class="gradient-orb gradient-orb-1"></div>
+            <div class="gradient-orb gradient-orb-2"></div>
+            <div class="gradient-orb gradient-orb-3"></div>
+            
+            <!-- Particle System -->
+            <div class="particles">
+                <div class="particle particle-1"></div>
+                <div class="particle particle-2"></div>
+                <div class="particle particle-3"></div>
+                <div class="particle particle-4"></div>
+                <div class="particle particle-5"></div>
+                <div class="particle particle-6"></div>
+                <div class="particle particle-7"></div>
+                <div class="particle particle-8"></div>
+                <div class="particle particle-9"></div>
+                <div class="particle particle-10"></div>
+            </div>
+            
+            <!-- Animated Lines -->
+            <svg class="animated-lines" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+                <path class="line line-1" d="M0,200 Q480,50 960,200 T1920,200" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none"/>
+                <path class="line line-2" d="M0,400 Q480,250 960,400 T1920,400" stroke="rgba(255,255,255,0.05)" stroke-width="1" fill="none"/>
+                <path class="line line-3" d="M0,600 Q480,450 960,600 T1920,600" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
+            </svg>
         </div>
 
-        <div class="container mx-auto px-4 relative z-10">
+        <div class="container rounded-2xl mx-auto px-4 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Hero Content -->
                 <div class="hero-content">
@@ -29,7 +58,7 @@
                     </p>
                     
                     <!-- CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 hero-buttons">
                         <a href="/products/" class="btn-primary text-lg">
                             <i class="fas fa-box mr-2"></i>Explore Products
                         </a>
@@ -62,44 +91,92 @@
                 <!-- Hero Visual -->
                 <div class="hero-visual relative">
                     <div class="relative">
-                        <!-- 3D Product Cards -->
-                        <div class="product-showcase">
-                            <div class="product-card-3d product-card-1">
-                                <div class="product-logo">
-                                    <img src="{% static 'Pringles.svg' %}" alt="Pringles" class="brand-image">
-                                </div>
-                                <div class="product-name">Pringles</div>
+                        <!-- Enhanced 3D Product Cards Showcase -->
+                        <div class="product-showcase-enhanced">
+                            <!-- Central Hub -->
+                            <div class="central-hub">
+                                <div class="hub-glow"></div>
+                                <div class="hub-text">Sweet<br>Bliss</div>
                             </div>
-                            <div class="product-card-3d product-card-2">
-                                <div class="product-logo">
-                                    <img src="{% static 'Kitkat.svg' %}" alt="KitKat" class="brand-image">
+                            
+                            <!-- Product Cards in Octagonal Formation -->
+                            <div class="product-card-3d product-card-1" data-product="pringles">
+                                <div class="card-inner">
+                                    <div class="product-logo">
+                                        <img src="{% static 'Pringles.svg' %}" alt="Pringles" class="brand-image">
+                                    </div>
+                                    <div class="product-name">Pringles</div>
+                                    <div class="card-glow"></div>
                                 </div>
-                                <div class="product-name">KitKat</div>
                             </div>
-                            <div class="product-card-3d product-card-3">
-                                <div class="product-logo">
-                                    <img src="{% static 'Jacobs.svg' %}" alt="Jacobs" class="brand-image">
+                            <div class="product-card-3d product-card-2" data-product="mm">
+                                <div class="card-inner">
+                                    <div class="product-logo">
+                                        <img src="{% static 'M&M.png' %}" alt="M&M" class="brand-image">
+                                    </div>
+                                    <div class="product-name">M&M's</div>
+                                    <div class="card-glow"></div>
                                 </div>
-                                <div class="product-name">Jacobs</div>
                             </div>
-                            <div class="product-card-3d product-card-4">
-                                <div class="product-logo">
-                                    <img src="{% static 'Rani.png' %}" alt="Rani" class="brand-image">
+                            <div class="product-card-3d product-card-3" data-product="jacobs">
+                                <div class="card-inner">
+                                    <div class="product-logo">
+                                        <img src="{% static 'Jacobs.svg' %}" alt="Jacobs" class="brand-image">
+                                    </div>
+                                    <div class="product-name">Jacobs</div>
+                                    <div class="card-glow"></div>
                                 </div>
-                                <div class="product-name">Rani</div>
                             </div>
-                            <div class="product-card-3d product-card-5">
-                                <div class="product-logo">
-                                    <img src="{% static 'Barbican.webp' %}" alt="Barbican" class="brand-image">
+                            <div class="product-card-3d product-card-4" data-product="rani">
+                                <div class="card-inner">
+                                    <div class="product-logo">
+                                        <img src="{% static 'Rani.png' %}" alt="Rani" class="brand-image">
+                                    </div>
+                                    <div class="product-name">Rani</div>
+                                    <div class="card-glow"></div>
                                 </div>
-                                <div class="product-name">Barbican</div>
                             </div>
-                            <div class="product-card-3d product-card-6">
-                                <div class="product-logo">
-                                    <img src="{% static 'Nestle.svg' %}" alt="Nestlé" class="brand-image">
+                            <div class="product-card-3d product-card-5" data-product="barbican">
+                                <div class="card-inner">
+                                    <div class="product-logo">
+                                        <img src="{% static 'Barbican.webp' %}" alt="Barbican" class="brand-image">
+                                    </div>
+                                    <div class="product-name">Barbican</div>
+                                    <div class="card-glow"></div>
                                 </div>
-                                <div class="product-name">Nestlé</div>
                             </div>
+                            <div class="product-card-3d product-card-6" data-product="horses">
+                                <div class="card-inner">
+                                    <div class="product-logo">
+                                        <img src="{% static 'B_2.png' %}" alt="3 Horses" class="brand-image">
+                                    </div>
+                                    <div class="product-name">3 Horses</div>
+                                    <div class="card-glow"></div>
+                                </div>
+                            </div>
+                            <div class="product-card-3d product-card-7" data-product="mentos">
+                                <div class="card-inner">
+                                    <div class="product-logo">
+                                        <img src="{% static 'mentos.png' %}" alt="Mentos" class="brand-image">
+                                    </div>
+                                    <div class="product-name">Mentos</div>
+                                    <div class="card-glow"></div>
+                                </div>
+                            </div>
+                            <div class="product-card-3d product-card-8" data-product="rani-drink">
+                                <div class="card-inner">
+                                    <div class="product-logo">
+                                        <img src="{% static 'rani-drink.png' %}" alt="Rani Float" class="brand-image">
+                                    </div>
+                                    <div class="product-name">Rani Float</div>
+                                    <div class="card-glow"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Orbital Rings -->
+                            <div class="orbital-ring ring-1"></div>
+                            <div class="orbital-ring ring-2"></div>
+                            <div class="orbital-ring ring-3"></div>
                         </div>
                     </div>
                 </div>
@@ -107,8 +184,8 @@
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
-            <div class="w-6 h-10 border-2 border-white/50 rounded-full p-1">
+        <div class="absolute bottom-8 p-4 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <div class="w-6 h-10 border-2 border-white/50 rounded-full ml-6 p-1">
                 <div class="w-1 h-3 bg-white rounded-full animate-bounce mx-auto"></div>
             </div>
             <p class="text-white text-sm mt-2">Scroll Down</p>
@@ -160,71 +237,43 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for product in featured_products %}
                 <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
                     <div class="product-logo-container mb-4 text-center">
-                        <img src="{% static 'Pringles.svg' %}" alt="Pringles" class="product-image mx-auto">
+                        {% if product.image_url %}
+                            <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image mx-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="product-image-placeholder" style="display:none;">
+                                <span class="text-lg font-bold text-gray-400">{{ product.name|slice:":2"|upper }}</span>
+                            </div>
+                        {% else %}
+                            <div class="product-image-placeholder">
+                                <span class="text-lg font-bold text-gray-400">{{ product.name|slice:":2"|upper }}</span>
+                            </div>
+                        {% endif %}
                     </div>
-                    <h3 class="text-2xl font-bold mb-2 text-center">Pringles</h3>
-                    <p class="text-gray-600 text-center mb-4">Premium potato crisps in variety of flavors</p>
+                    <h3 class="text-2xl font-bold mb-2 text-center">{{ product.brand.name }} {{ product.name }}</h3>
+                    <p class="text-gray-600 text-center mb-4">{{ product.description|truncatewords:8 }}</p>
                     <div class="text-center">
-                        <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">Snacks</span>
+                        {% if product.category.name == "Chocolates & Confectionery" %}
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">{{ product.category.icon }} Chocolate</span>
+                        {% elif product.category.name == "Snacks & Crisps" %}
+                            <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">{{ product.category.icon }} Snacks</span>
+                        {% elif product.category.name == "Beverages & Drinks" %}
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">{{ product.category.icon }} Beverages</span>
+                        {% elif product.category.name == "Coffee & Hot Beverages" %}
+                            <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">{{ product.category.icon }} Coffee</span>
+                        {% else %}
+                            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">{{ product.category.icon }} {{ product.category.name }}</span>
+                        {% endif %}
                     </div>
                 </div>
-
-                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="product-logo-container mb-4 text-center">
-                        <img src="{% static 'Jacobs.svg' %}" alt="Jacobs Coffee" class="product-image mx-auto">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-center">Jacobs Coffee</h3>
-                    <p class="text-gray-600 text-center mb-4">Rich and aromatic coffee blends</p>
-                    <div class="text-center">
-                        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">Coffee</span>
-                    </div>
+                {% empty %}
+                <!-- Fallback content if no featured products -->
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-500 text-lg">No featured products available at the moment.</p>
+                    <a href="/admin/" class="text-blue-600 hover:text-blue-800 mt-2 inline-block">Add featured products in admin</a>
                 </div>
-
-                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="product-logo-container mb-4 text-center">
-                        <img src="{% static 'Rani.png' %}" alt="Rani Juice" class="product-image mx-auto">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-center">Rani Juice</h3>
-                    <p class="text-gray-600 text-center mb-4">Refreshing fruit juices and beverages</p>
-                    <div class="text-center">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Beverages</span>
-                    </div>
-                </div>
-
-                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="product-logo-container mb-4 text-center">
-                        <img src="{% static 'Barbican.webp' %}" alt="Barbican" class="product-image mx-auto">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-center">Barbican</h3>
-                    <p class="text-gray-600 text-center mb-4">Non-alcoholic malt beverages</p>
-                    <div class="text-center">
-                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Beverages</span>
-                    </div>
-                </div>
-
-                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="product-logo-container mb-4 text-center">
-                        <img src="{% static 'Kitkat.svg' %}" alt="KitKat" class="product-image mx-auto">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-center">KitKat</h3>
-                    <p class="text-gray-600 text-center mb-4">Crispy wafer chocolate bars</p>
-                    <div class="text-center">
-                        <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Chocolate</span>
-                    </div>
-                </div>
-
-                <div class="product-card hover-scale bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="product-logo-container mb-4 text-center">
-                        <img src="{% static 'Nestle.svg' %}" alt="Nestlé" class="product-image mx-auto">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-center">Nestlé</h3>
-                    <p class="text-gray-600 text-center mb-4">Premium confectionery products</p>
-                    <div class="text-center">
-                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Confectionery</span>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             <div class="text-center mt-12">
@@ -240,86 +289,48 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-4xl lg:text-5xl font-bold gradient-text mb-6">Our Partner Brands</h2>
-                <p class="text-xl text-gray-600">Trusted global manufacturers and premium brands</p>
+                <p class="text-xl text-gray-600">Trusted global manufacturers and premium brands we import from</p>
             </div>
 
             <div class="brands-scroll overflow-hidden">
                 <div class="flex animate-scroll-infinite space-x-16 items-center">
-                    <!-- First set of brands -->
+                    <!-- Dynamic Partners from Database -->
+                    {% for partner in partners %}
                     <div class="brand-item flex-shrink-0 text-center">
                         <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Nestle.svg' %}" alt="Nestlé" class="brand-logo">
+                            {% if partner.logo_url %}
+                                <img src="{{ partner.logo_url }}" alt="{{ partner.name }}" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="brand-logo-placeholder" style="display:none;">
+                                    <span class="text-2xl font-bold text-gray-400">{{ partner.name|slice:":2"|upper }}</span>
+                                </div>
+                            {% else %}
+                                <div class="brand-logo-placeholder">
+                                    <span class="text-2xl font-bold text-gray-400">{{ partner.name|slice:":2"|upper }}</span>
+                                </div>
+                            {% endif %}
                         </div>
-                        <div class="font-semibold text-gray-700 text-sm">Nestlé</div>
+                        <div class="font-semibold text-gray-700 text-sm">{{ partner.name }}</div>
                     </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Pringles.svg' %}" alt="Pringles" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">Pringles</div>
-                    </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Kitkat.svg' %}" alt="KitKat" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">KitKat</div>
-                    </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Jacobs.svg' %}" alt="Jacobs" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">Jacobs</div>
-                    </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Rani.png' %}" alt="Rani" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">Rani</div>
-                    </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Barbican.webp' %}" alt="Barbican" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">Barbican</div>
-                    </div>
+                    {% endfor %}
                     
                     <!-- Duplicate set for seamless loop -->
+                    {% for partner in partners %}
                     <div class="brand-item flex-shrink-0 text-center">
                         <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Nestle.svg' %}" alt="Nestlé" class="brand-logo">
+                            {% if partner.logo_url %}
+                                <img src="{{ partner.logo_url }}" alt="{{ partner.name }}" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="brand-logo-placeholder" style="display:none;">
+                                    <span class="text-2xl font-bold text-gray-400">{{ partner.name|slice:":2"|upper }}</span>
+                                </div>
+                            {% else %}
+                                <div class="brand-logo-placeholder">
+                                    <span class="text-2xl font-bold text-gray-400">{{ partner.name|slice:":2"|upper }}</span>
+                                </div>
+                            {% endif %}
                         </div>
-                        <div class="font-semibold text-gray-700 text-sm">Nestlé</div>
+                        <div class="font-semibold text-gray-700 text-sm">{{ partner.name }}</div>
                     </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Pringles.svg' %}" alt="Pringles" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">Pringles</div>
-                    </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Kitkat.svg' %}" alt="KitKat" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">KitKat</div>
-                    </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Jacobs.svg' %}" alt="Jacobs" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">Jacobs</div>
-                    </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Rani.png' %}" alt="Rani" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">Rani</div>
-                    </div>
-                    <div class="brand-item flex-shrink-0 text-center">
-                        <div class="brand-logo-container mb-2">
-                            <img src="{% static 'Barbican.webp' %}" alt="Barbican" class="brand-logo">
-                        </div>
-                        <div class="font-semibold text-gray-700 text-sm">Barbican</div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -361,95 +372,478 @@
     </section>
 
 <style>
-/* Hero Section Animations */
+/* Enhanced Hero Section Animations */
+.hero-bg {
+    background: linear-gradient(135deg, 
+        #667eea 0%, 
+        #764ba2 25%, 
+        #a54dafff 50%, 
+        #283e6dff 75%, 
+        #4facfe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 50% 100%; }
+    75% { background-position: 50% 0%; }
+}
+
+/* Enhanced Floating Elements */
 .floating-element {
     position: absolute;
-    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    animation: float 15s infinite ease-in-out;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: floatComplex 25s infinite ease-in-out;
 }
 
 .floating-element-1 {
-    width: 100px;
-    height: 100px;
-    top: 20%;
-    left: 10%;
+    width: 120px;
+    height: 120px;
+    top: 15%;
+    left: 8%;
     animation-delay: 0s;
+    animation-duration: 20s;
 }
 
 .floating-element-2 {
-    width: 60px;
-    height: 60px;
-    top: 60%;
-    right: 15%;
-    animation-delay: -3s;
+    width: 80px;
+    height: 80px;
+    top: 65%;
+    right: 12%;
+    animation-delay: -4s;
+    animation-duration: 18s;
 }
 
 .floating-element-3 {
-    width: 80px;
-    height: 80px;
-    bottom: 20%;
-    left: 60%;
-    animation-delay: -6s;
+    width: 100px;
+    height: 100px;
+    bottom: 18%;
+    left: 65%;
+    animation-delay: -8s;
+    animation-duration: 22s;
 }
 
 .floating-element-4 {
-    width: 40px;
-    height: 40px;
-    top: 30%;
-    right: 30%;
-    animation-delay: -9s;
+    width: 60px;
+    height: 60px;
+    top: 35%;
+    right: 25%;
+    animation-delay: -12s;
+    animation-duration: 16s;
 }
 
-.product-showcase {
+.floating-element-5 {
+    width: 90px;
+    height: 90px;
+    top: 70%;
+    left: 20%;
+    animation-delay: -16s;
+    animation-duration: 24s;
+}
+
+.floating-element-6 {
+    width: 70px;
+    height: 70px;
+    top: 10%;
+    right: 40%;
+    animation-delay: -20s;
+    animation-duration: 19s;
+}
+
+@keyframes floatComplex {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg); 
+        opacity: 0.6;
+    }
+    25% { 
+        transform: translateY(-30px) translateX(20px) rotate(90deg); 
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translateY(-20px) translateX(-15px) rotate(180deg); 
+        opacity: 0.4;
+    }
+    75% { 
+        transform: translateY(10px) translateX(-30px) rotate(270deg); 
+        opacity: 0.9;
+    }
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px); 
+    }
+    50% { 
+        transform: translateY(-20px); 
+    }
+}
+
+/* Gradient Orbs */
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: orbFloat 30s infinite ease-in-out;
+}
+
+.gradient-orb-1 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 99, 132, 0.3) 0%, transparent 70%);
+    top: 10%;
+    left: -5%;
+    animation-delay: 0s;
+}
+
+.gradient-orb-2 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(54, 162, 235, 0.3) 0%, transparent 70%);
+    bottom: 10%;
+    right: -5%;
+    animation-delay: -10s;
+}
+
+.gradient-orb-3 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 206, 84, 0.3) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -20s;
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-50px, -30px) scale(1.1); }
+    50% { transform: translate(30px, -50px) scale(0.9); }
+    75% { transform: translate(-20px, 40px) scale(1.05); }
+}
+
+/* Particle System */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: particleFloat 15s infinite linear;
+}
+
+.particle-1 { top: 20%; left: 10%; animation-delay: 0s; }
+.particle-2 { top: 40%; left: 20%; animation-delay: -2s; }
+.particle-3 { top: 60%; left: 30%; animation-delay: -4s; }
+.particle-4 { top: 80%; left: 40%; animation-delay: -6s; }
+.particle-5 { top: 30%; left: 60%; animation-delay: -8s; }
+.particle-6 { top: 50%; left: 70%; animation-delay: -10s; }
+.particle-7 { top: 70%; left: 80%; animation-delay: -12s; }
+.particle-8 { top: 90%; left: 90%; animation-delay: -14s; }
+.particle-9 { top: 15%; left: 50%; animation-delay: -3s; }
+.particle-10 { top: 75%; left: 15%; animation-delay: -7s; }
+
+@keyframes particleFloat {
+    0% { 
+        transform: translateY(100vh) translateX(0px) scale(0); 
+        opacity: 0; 
+    }
+    10% { 
+        opacity: 1; 
+        scale: 1;
+    }
+    90% { 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translateY(-100vh) translateX(-50px) scale(0); 
+        opacity: 0; 
+    }
+}
+
+/* Animated Lines */
+.animated-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawLine 20s ease-in-out infinite;
+}
+
+.line-1 { animation-delay: 0s; }
+.line-2 { animation-delay: -7s; }
+.line-3 { animation-delay: -14s; }
+
+@keyframes drawLine {
+    0%, 20% { stroke-dashoffset: 1000; }
+    40%, 80% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -1000; }
+}
+
+/* Enhanced Product Showcase */
+.product-showcase-enhanced {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     margin: 0 auto;
+    perspective: 1000px;
 }
 
+/* Central Hub */
+.central-hub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    animation: hubPulse 4s ease-in-out infinite;
+}
+
+.hub-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+.hub-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    line-height: 1.2;
+    z-index: 1;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes hubPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* Enhanced Product Cards */
 .product-card-3d {
     position: absolute;
-    width: 80px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
+    width: 90px;
+    height: 110px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: orbitRotation 25s infinite linear;
+    cursor: pointer;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    animation: rotate 20s infinite linear;
+    padding: 10px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.4s ease;
 }
 
-.product-card-3d:hover {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.25);
+.product-card-3d:hover .card-inner {
+    transform: translateZ(30px) rotateY(10deg);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-.product-emoji {
-    font-size: 2rem;
-    margin-bottom: 8px;
+.card-glow {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 15px;
+    opacity: 0;
+    animation: cardGlow 6s ease-in-out infinite;
 }
 
+@keyframes cardGlow {
+    0%, 100% { opacity: 0; transform: rotate(0deg); }
+    50% { opacity: 0.7; transform: rotate(180deg); }
+}
+
+/* Octagonal Positioning (8 cards) */
+.product-card-1 {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 0s;
+}
+
+.product-card-2 {
+    top: 15%;
+    right: 15%;
+    animation-delay: -3.125s;
+}
+
+.product-card-3 {
+    top: 45%;
+    right: 0;
+    animation-delay: -6.25s;
+}
+
+.product-card-4 {
+    bottom: 15%;
+    right: 15%;
+    animation-delay: -9.375s;
+}
+
+.product-card-5 {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: -12.5s;
+}
+
+.product-card-6 {
+    bottom: 15%;
+    left: 15%;
+    animation-delay: -15.625s;
+}
+
+.product-card-7 {
+    top: 45%;
+    left: 0;
+    animation-delay: -18.75s;
+}
+
+.product-card-8 {
+    top: 15%;
+    left: 15%;
+    animation-delay: -21.875s;
+}
+
+@keyframes orbitRotation {
+    0% {
+        transform: rotate(0deg) translateX(180px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(180px) rotate(-360deg);
+    }
+}
+
+/* Orbital Rings */
+.orbital-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ringRotate 30s linear infinite;
+}
+
+.ring-1 {
+    width: 300px;
+    height: 300px;
+    animation-delay: 0s;
+    border-style: dashed;
+}
+
+.ring-2 {
+    width: 400px;
+    height: 400px;
+    animation-delay: -10s;
+    opacity: 0.5;
+}
+
+.ring-3 {
+    width: 500px;
+    height: 500px;
+    animation-delay: -20s;
+    opacity: 0.3;
+    border-style: dotted;
+}
+
+@keyframes ringRotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Product Logo Enhancements */
 .product-logo {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 8px;
+    position: relative;
 }
 
 .brand-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+    filter: drop-shadow(0 4px 8px rgba(255,255,255,0.3));
+    transition: all 0.3s ease;
 }
 
+.product-card-3d:hover .brand-image {
+    transform: scale(1.1);
+    filter: drop-shadow(0 6px 12px rgba(255,255,255,0.5));
+}
+
+.product-name {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.product-card-3d:hover .product-name {
+    transform: translateY(-2px);
+    text-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+/* Brand logo container styles for other sections */
 .brand-logo-container {
     width: 60px;
     height: 60px;
@@ -465,6 +859,17 @@
     object-fit: contain;
 }
 
+.brand-logo-placeholder {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    border-radius: 8px;
+    border: 2px solid #d1d5db;
+}
+
 .product-logo-container {
     height: 80px;
     display: flex;
@@ -478,57 +883,46 @@
     object-fit: contain;
 }
 
-.product-name {
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-align: center;
+.product-image-placeholder {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    border-radius: 8px;
+    border: 2px solid #d1d5db;
+    margin: 0 auto;
 }
 
-.product-card-1 {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    animation-delay: 0s;
-}
-
-.product-card-2 {
-    top: 25%;
-    right: 0;
-    animation-delay: -3s;
-}
-
-.product-card-3 {
-    bottom: 25%;
-    right: 0;
-    animation-delay: -6s;
-}
-
-.product-card-4 {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    animation-delay: -9s;
-}
-
-.product-card-5 {
-    bottom: 25%;
-    left: 0;
-    animation-delay: -12s;
-}
-
-.product-card-6 {
-    top: 25%;
-    left: 0;
-    animation-delay: -15s;
-}
-
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg) translateX(150px) rotate(0deg);
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .product-showcase-enhanced {
+        width: 350px;
+        height: 350px;
     }
-    100% {
-        transform: rotate(360deg) translateX(150px) rotate(-360deg);
+    
+    .product-card-3d {
+        width: 70px;
+        height: 85px;
+    }
+    
+    .central-hub {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .hub-text {
+        font-size: 12px;
+    }
+    
+    @keyframes orbitRotation {
+        0% {
+            transform: rotate(0deg) translateX(130px) rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg) translateX(130px) rotate(-360deg);
+        }
     }
 }
 
@@ -547,16 +941,16 @@
 }
 
 @keyframes scroll-infinite {
-    0% {
+    0%, 100% {
         transform: translateX(0);
     }
-    100% {
+    50% {
         transform: translateX(-50%);
     }
 }
 
 .animate-scroll-infinite {
-    animation: scroll-infinite 20s linear infinite;
+    animation: scroll-infinite 30s linear infinite;
 }
 
 /* Feature cards animation */
@@ -580,57 +974,154 @@
 }
 </style>
 
+.
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Hero animations
+    // Enhanced Hero animations with staggered entrance
     anime.timeline({
         easing: 'easeOutCubic'
     })
     .add({
         targets: '.hero-title',
         opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 800,
-        delay: 500
+        translateY: [50, 0],
+        rotateX: [90, 0],
+        duration: 1000,
+        delay: 800
     })
     .add({
         targets: '.hero-subtitle',
         opacity: [0, 1],
         translateY: [30, 0],
-        duration: 700,
+        duration: 800,
         delay: 200
     })
     .add({
         targets: '.hero-description',
         opacity: [0, 1],
         translateY: [30, 0],
-        duration: 600,
+        duration: 700,
         delay: 200
     })
     .add({
         targets: '.hero-buttons',
         opacity: [0, 1],
         translateY: [30, 0],
-        duration: 500,
+        scale: [0.8, 1],
+        duration: 600,
         delay: 200
     })
     .add({
-        targets: '.hero-stats',
+        targets: '.hero-stats > div',
         opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 400,
-        delay: 200
+        translateY: [20, 0],
+        scale: [0.8, 1],
+        duration: 500,
+        delay: anime.stagger(100)
     });
 
-    // Feature cards animation
+    // Enhanced product card interactions
+    const productCards = document.querySelectorAll('.product-card-3d');
+    
+    productCards.forEach((card, index) => {
+        // Initial entrance animation
+        anime({
+            targets: card,
+            opacity: [0, 1],
+            scale: [0, 1],
+            rotate: [180, 0],
+            duration: 1000,
+            delay: 1500 + (index * 150),
+            easing: 'easeOutElastic(1, .8)'
+        });
+
+        // Hover animations
+        card.addEventListener('mouseenter', function() {
+            anime({
+                targets: card.querySelector('.card-inner'),
+                scale: 1.15,
+                rotateY: 15,
+                duration: 300,
+                easing: 'easeOutCubic'
+            });
+            
+            anime({
+                targets: card.querySelector('.brand-image'),
+                scale: 1.2,
+                rotate: '1turn',
+                duration: 600,
+                easing: 'easeOutCubic'
+            });
+        });
+
+        card.addEventListener('mouseleave', function() {
+            anime({
+                targets: card.querySelector('.card-inner'),
+                scale: 1,
+                rotateY: 0,
+                duration: 300,
+                easing: 'easeOutCubic'
+            });
+            
+            anime({
+                targets: card.querySelector('.brand-image'),
+                scale: 1,
+                rotate: 0,
+                duration: 600,
+                easing: 'easeOutCubic'
+            });
+        });
+
+        // Click effect
+        card.addEventListener('click', function() {
+            anime({
+                targets: card,
+                scale: [1, 1.3, 1],
+                rotate: '1turn',
+                duration: 800,
+                easing: 'easeOutElastic(1, .6)'
+            });
+        });
+    });
+
+    // Central hub pulsing interaction
+    const centralHub = document.querySelector('.central-hub');
+    if (centralHub) {
+        centralHub.addEventListener('click', function() {
+            // Pause all card rotations and bring them closer
+            productCards.forEach((card, index) => {
+                anime({
+                    targets: card,
+                    scale: [1, 1.2, 1],
+                    duration: 1000,
+                    delay: index * 100,
+                    easing: 'easeOutElastic(1, .8)'
+                });
+            });
+            
+            // Hub explosion effect
+            anime({
+                targets: centralHub,
+                scale: [1, 1.5, 1],
+                rotate: '2turn',
+                duration: 1200,
+                easing: 'easeOutElastic(1, .6)'
+            });
+        });
+    }
+
+    // Feature cards enhanced animation
     const featureObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
                 anime({
                     targets: entry.target,
                     opacity: [0, 1],
-                    translateY: [50, 0],
-                    duration: 800,
+                    translateY: [60, 0],
+                    rotateX: [45, 0],
+                    scale: [0.8, 1],
+                    duration: 1000,
+                    delay: index * 200,
                     easing: 'easeOutCubic'
                 });
             }
@@ -641,16 +1132,19 @@ document.addEventListener('DOMContentLoaded', function() {
         featureObserver.observe(card);
     });
 
-    // Product cards stagger animation
+    // Product cards section enhanced stagger animation
     const productObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                const productCards = document.querySelectorAll('.product-card');
                 anime({
-                    targets: '.product-card',
+                    targets: productCards,
                     opacity: [0, 1],
-                    translateY: [30, 0],
-                    duration: 600,
-                    delay: anime.stagger(100),
+                    translateY: [40, 0],
+                    rotateY: [45, 0],
+                    scale: [0.9, 1],
+                    duration: 800,
+                    delay: anime.stagger(150, {start: 300}),
                     easing: 'easeOutCubic'
                 });
             }
@@ -659,17 +1153,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const productSection = document.querySelector('.product-card');
     if (productSection) {
-        productObserver.observe(productSection);
+        productObserver.observe(productSection.parentElement);
     }
 
-    // Scroll indicator click
-    document.querySelector('.scroll-indicator')?.addEventListener('click', function() {
-        anime({
-            targets: 'html, body',
-            scrollTop: window.innerHeight,
-            duration: 1000,
-            easing: 'easeInOutCubic'
+    // Enhanced scroll indicator
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function() {
+            anime({
+                targets: 'html, body',
+                scrollTop: window.innerHeight,
+                duration: 1200,
+                easing: 'easeInOutCubic'
+            });
         });
+
+        // Floating animation for scroll indicator
+        anime({
+            targets: scrollIndicator,
+            translateY: [-10, 10],
+            duration: 2000,
+            direction: 'alternate',
+            loop: true,
+            easing: 'easeInOutSine'
+        });
+    }
+
+    // Parallax effect for background elements
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.3;
+        
+        const floatingElements = document.querySelectorAll('.floating-element');
+        floatingElements.forEach((element, index) => {
+            const speed = (index + 1) * 0.1;
+            element.style.transform = `translateY(${rate * speed}px) rotate(${scrolled * 0.1}deg)`;
+        });
+
+        const gradientOrbs = document.querySelectorAll('.gradient-orb');
+        gradientOrbs.forEach((orb, index) => {
+            const speed = (index + 1) * 0.05;
+            orb.style.transform = `translateY(${rate * speed}px) scale(${1 + scrolled * 0.0001})`;
+        });
+    });
+
+    // Dynamic background color shift on scroll
+    window.addEventListener('scroll', () => {
+        const scrollPercent = window.pageYOffset / (document.body.scrollHeight - window.innerHeight);
+        const heroSection = document.querySelector('.hero-bg');
+        if (heroSection && scrollPercent < 0.3) {
+            const hue = 240 + (scrollPercent * 60); // Shift from blue to purple
+        }
     });
 });
 </script>

@@ -4,7 +4,7 @@ from wagtail.models import Page, Site
 from business.models import (
     HomePage, AboutPage, ProductsPage, TeamPage, ContactPage,
     ServicesPage, PortfolioPage, PartnershipsPage,
-    ProductCategory, Brand, Product, TeamMember
+    ProductCategory, Partner, Brand, Product, TeamMember
 )
 from seo.models import GlobalSEOSettings
 
@@ -15,12 +15,23 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("Setting up Sweet Bliss website structure...")
 
-        # Get the root page (depth=1)
+        # First, let's ensure we have a proper root page structure
+        from wagtail.models import Page
+        
+        # Check if we have the proper root structure
         try:
             root_page = Page.objects.get(depth=1)
         except Page.DoesNotExist:
             self.stdout.write(self.style.ERROR("Root page not found. Please run 'python manage.py migrate' first."))
             return
+        except Page.MultipleObjectsReturned:
+            # Multiple root pages, let's fix this
+            root_pages = Page.objects.filter(depth=1)
+            root_page = root_pages.first()
+            # Clean up extra root pages
+            for page in root_pages[1:]:
+                page.delete()
+            self.stdout.write("Cleaned up multiple root pages")
 
         # Check if we already have a homepage
         existing_home = HomePage.objects.first()
@@ -53,13 +64,24 @@ class Command(BaseCommand):
                 live=True
             )
             
-            # Add to root page
-            root_page.add_child(instance=home_page)
-            
-            # Publish the page
-            home_page.save_revision().publish()
-            
-            self.stdout.write(self.style.SUCCESS("✓ Created HomePage"))
+            # Add to root page safely
+            try:
+                root_page.add_child(instance=home_page)
+                # Publish the page
+                home_page.save_revision().publish()
+                self.stdout.write(self.style.SUCCESS("✓ Created HomePage"))
+            except Exception as e:
+                self.stdout.write(self.style.ERROR(f"Failed to create homepage: {e}"))
+                # Try alternative approach - create directly
+                try:
+                    home_page.path = root_page._get_next_child_path()
+                    home_page.depth = root_page.depth + 1
+                    home_page.save()
+                    home_page.save_revision().publish()
+                    self.stdout.write(self.style.SUCCESS("✓ Created HomePage (alternative method)"))
+                except Exception as e2:
+                    self.stdout.write(self.style.ERROR(f"Failed with alternative method too: {e2}"))
+                    return
 
         # Update site to use new homepage
         try:
@@ -230,26 +252,197 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(f"✓ Created category: {category.name}")
 
-        # Create Brands
+        # Create Business Partners (Brands we Import from)
+        partners_data = [
+            {
+                "name": "Nestlé",
+                "description": "Global leader in nutrition, health and wellness with over 2000 brands worldwide",
+                "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Nestl%C3%A9_logo.svg/400px-Nestl%C3%A9_logo.svg.png",
+                "website_url": "https://www.nestle.com",
+                "country_of_origin": "Switzerland",
+                "order": 1
+            },
+            {
+                "name": "Mars Wrigley",
+                "description": "Leading manufacturer of chocolate, chewing gum, mints, and fruity confections",
+                "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mars_Wrigley_logo.svg/400px-Mars_Wrigley_logo.svg.png",
+                "website_url": "https://www.mars.com",
+                "country_of_origin": "United States",
+                "order": 2
+            },
+            {
+                "name": "Ferrero",
+                "description": "Italian confectionery company known for premium chocolate products",
+                "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Ferrero_SpA_logo.svg/400px-Ferrero_SpA_logo.svg.png",
+                "website_url": "https://www.ferrero.com",
+                "country_of_origin": "Italy",
+                "order": 3
+            },
+            {
+                "name": "Perfetti Van Melle",
+                "description": "Global manufacturer of confectionery and gum products",
+                "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Perfetti_Van_Melle_logo.svg/400px-Perfetti_Van_Melle_logo.svg.png",
+                "website_url": "https://www.perfettivanmelle.com",
+                "country_of_origin": "Netherlands",
+                "order": 4
+            },
+            {
+                "name": "Mondelez International",
+                "description": "Leading snacking company with iconic global brands",
+                "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Mondelez_International_logo.svg/400px-Mondelez_International_logo.svg.png",
+                "website_url": "https://www.mondelezinternational.com",
+                "country_of_origin": "United States",
+                "order": 5
+            },
+            {
+                "name": "Kellanova",
+                "description": "Global snacking, cereal and noodles company with beloved brands",
+                "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Kellanova_logo.svg/400px-Kellanova_logo.svg.png",
+                "website_url": "https://www.kellanova.com",
+                "country_of_origin": "United States",
+                "order": 6
+            },
+            {
+                "name": "JDE Peet's",
+                "description": "World's leading pure-play coffee and tea company",
+                "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/JDE_Peet%27s_logo.svg/400px-JDE_Peet%27s_logo.svg.png",
+                "website_url": "https://www.jdepeets.com",
+                "country_of_origin": "Netherlands",
+                "order": 7
+            },
+            {
+                "name": "Aujan Coca-Cola Beverages",
+                "description": "Leading beverage company in the Middle East and North Africa",
+                "logo_url": "https://example.com/aujan-logo.png",
+                "website_url": "https://www.aujancoca-cola.com",
+                "country_of_origin": "UAE",
+                "order": 8
+            },
+            {
+                "name": "Bavaria N.V.",
+                "description": "Premium non-alcoholic malt beverage company",
+                "logo_url": "https://example.com/bavaria-logo.png",
+                "website_url": "https://www.bavaria.com",
+                "country_of_origin": "Netherlands",
+                "order": 9
+            }
+        ]
+
+        for partner_data in partners_data:
+            partner, created = Partner.objects.get_or_create(
+                name=partner_data["name"],
+                defaults=partner_data
+            )
+            if created:
+                self.stdout.write(f"✓ Created partner: {partner.name}")
+
+        # Create Brands for specific products
         brands_data = [
-            {"name": "Pringles", "description": "Premium stackable potato crisps", "country": "United States"},
-            {"name": "Jacobs Coffee", "description": "Rich, aromatic coffee blends", "country": "Germany"},
-            {"name": "Rani", "description": "Refreshing fruit juices and beverages", "country": "UAE"},
-            {"name": "Barbican", "description": "Premium non-alcoholic malt beverages", "country": "UAE"},
-            {"name": "KitKat", "description": "Iconic chocolate wafer bars", "country": "United Kingdom"},
-            {"name": "Nestlé", "description": "Wide range of confectionery products", "country": "Switzerland"},
+            {"name": "Pringles", "description": "Premium stackable potato crisps", "country": "United States", "partner": "Kellanova"},
+            {"name": "Jacobs Coffee", "description": "Rich, aromatic coffee blends", "country": "Germany", "partner": "JDE Peet's"},
+            {"name": "Rani", "description": "Refreshing fruit juices and beverages", "country": "UAE", "partner": "Aujan Coca-Cola Beverages"},
+            {"name": "Barbican", "description": "Premium non-alcoholic malt beverages", "country": "UAE", "partner": "Bavaria N.V."},
+            {"name": "KitKat", "description": "Iconic chocolate wafer bars", "country": "United Kingdom", "partner": "Nestlé"},
+            {"name": "Nutella", "description": "Premium hazelnut spread", "country": "Italy", "partner": "Ferrero"},
         ]
 
         for brand_data in brands_data:
-            brand, created = Brand.objects.get_or_create(
-                name=brand_data["name"],
-                defaults={
-                    "description": brand_data["description"],
-                    "country_of_origin": brand_data["country"]
-                }
-            )
-            if created:
-                self.stdout.write(f"✓ Created brand: {brand.name}")
+            try:
+                partner = Partner.objects.get(name=brand_data["partner"])
+                brand, created = Brand.objects.get_or_create(
+                    name=brand_data["name"],
+                    defaults={
+                        "description": brand_data["description"],
+                        "country_of_origin": brand_data["country"],
+                        "partner": partner
+                    }
+                )
+                if created:
+                    self.stdout.write(f"✓ Created brand: {brand.name}")
+            except Partner.DoesNotExist:
+                self.stdout.write(f"⚠ Partner {brand_data['partner']} not found for brand {brand_data['name']}")
+
+        # Create Featured Products
+        featured_products_data = [
+            {
+                "name": "Original",
+                "description": "Classic Pringles Original flavor - crispy, stackable potato crisps",
+                "brand": "Pringles",
+                "category": "Snacks & Crisps",
+                "image_url": "https://example.com/pringles-original.jpg",
+                "slug": "pringles-original"
+            },
+            {
+                "name": "Gold Instant Coffee",
+                "description": "Premium instant coffee with rich, aromatic flavor",
+                "brand": "Jacobs Coffee",
+                "category": "Coffee & Hot Beverages",
+                "image_url": "https://example.com/jacobs-gold.jpg",
+                "slug": "jacobs-gold"
+            },
+            {
+                "name": "Float Juice 250ml",
+                "description": "Refreshing fruit juice drink with real fruit pieces",
+                "brand": "Rani",
+                "category": "Beverages & Drinks",
+                "image_url": "https://example.com/rani-float.jpg",
+                "slug": "rani-float-250ml"
+            },
+            {
+                "name": "Rani Can 240ml",
+                "description": "Premium fruit juice in convenient can packaging",
+                "brand": "Rani",
+                "category": "Beverages & Drinks",
+                "image_url": "https://example.com/rani-can.jpg",
+                "slug": "rani-can-240ml"
+            },
+            {
+                "name": "Non-Alcoholic Malt Drink",
+                "description": "Premium non-alcoholic malt beverage with natural ingredients",
+                "brand": "Barbican",
+                "category": "Beverages & Drinks",
+                "image_url": "https://example.com/barbican-malt.jpg",
+                "slug": "barbican-malt"
+            },
+            {
+                "name": "4-Finger Bar",
+                "description": "Iconic chocolate wafer bar - have a break, have a KitKat",
+                "brand": "KitKat",
+                "category": "Chocolates & Confectionery",
+                "image_url": "https://example.com/kitkat-4finger.jpg",
+                "slug": "kitkat-4finger"
+            },
+            {
+                "name": "Hazelnut Spread 750g",
+                "description": "Premium hazelnut spread with cocoa - perfect for breakfast",
+                "brand": "Nutella",
+                "category": "Chocolates & Confectionery",
+                "image_url": "https://example.com/nutella-750g.jpg",
+                "slug": "nutella-750g"
+            }
+        ]
+
+        for product_data in featured_products_data:
+            try:
+                brand = Brand.objects.get(name=product_data["brand"])
+                category = ProductCategory.objects.get(name=product_data["category"])
+                
+                product, created = Product.objects.get_or_create(
+                    slug=product_data["slug"],
+                    defaults={
+                        "name": product_data["name"],
+                        "description": product_data["description"],
+                        "brand": brand,
+                        "category": category,
+                        "image_url": product_data["image_url"],
+                        "is_featured": True,
+                        "is_active": True
+                    }
+                )
+                if created:
+                    self.stdout.write(f"✓ Created featured product: {brand.name} {product.name}")
+            except (Brand.DoesNotExist, ProductCategory.DoesNotExist) as e:
+                self.stdout.write(f"⚠ Could not create product {product_data['name']}: {e}")
 
         # Create Team Members
         team_data = [

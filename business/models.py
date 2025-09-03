@@ -110,19 +110,59 @@ class ProductCategory(models.Model):
 
 
 @register_snippet
-class Brand(models.Model):
-    """Brand information"""
+class Partner(models.Model):
+    """Partner companies - brands we import from"""
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True)
-    logo = models.ForeignKey(
-        get_image_model_string(),
-        on_delete=models.CASCADE,
-        related_name='+',
-        null=True,
-        blank=True
+    logo_url = models.URLField(
+        blank=True,
+        help_text="URL to the partner's logo image"
     )
     website_url = models.URLField(blank=True)
     country_of_origin = models.CharField(max_length=100, blank=True)
+    is_active = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0, help_text="Display order")
+    
+    class Meta:
+        ordering = ['order', 'name']
+        verbose_name = "Business Partner"
+        verbose_name_plural = "Business Partners"
+    
+    def __str__(self):
+        return self.name
+    
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('description'),
+        FieldPanel('logo_url'),
+        FieldPanel('website_url'),
+        FieldPanel('country_of_origin'),
+        MultiFieldPanel([
+            FieldPanel('is_active'),
+            FieldPanel('order'),
+        ], heading="Display Settings"),
+    ]
+
+
+@register_snippet
+class Brand(models.Model):
+    """Brand information for products"""
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField(blank=True)
+    logo_url = models.URLField(
+        blank=True,
+        help_text="URL to the brand's logo image"
+    )
+    website_url = models.URLField(blank=True)
+    country_of_origin = models.CharField(max_length=100, blank=True)
+    partner = models.ForeignKey(
+        Partner,
+        on_delete=models.CASCADE,
+        related_name='brands',
+        null=True,
+        blank=True,
+        help_text="Which partner company owns this brand"
+    )
     
     class Meta:
         ordering = ['name']
@@ -133,7 +173,8 @@ class Brand(models.Model):
     panels = [
         FieldPanel('name'),
         FieldPanel('description'),
-        FieldPanel('logo'),
+        FieldPanel('partner'),
+        FieldPanel('logo_url'),
         FieldPanel('website_url'),
         FieldPanel('country_of_origin'),
     ]
@@ -146,12 +187,9 @@ class Product(index.Indexed, models.Model):
     description = models.TextField(blank=True)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    image = models.ForeignKey(
-        get_image_model_string(),
-        on_delete=models.CASCADE,
-        related_name='+',
-        null=True,
-        blank=True
+    image_url = models.URLField(
+        blank=True,
+        help_text="URL to the product image"
     )
     
     # Product specifications
@@ -188,7 +226,7 @@ class Product(index.Indexed, models.Model):
         FieldPanel('description'),
         FieldPanel('category'),
         FieldPanel('brand'),
-        FieldPanel('image'),
+        FieldPanel('image_url'),
         FieldPanel('specifications'),
         MultiFieldPanel([
             FieldPanel('is_featured'),
@@ -297,7 +335,17 @@ class HomePage(SEOMixin, Page):
             is_active=True
         ).select_related('brand', 'category')[:6]
         
+        # Add business partners (brands we import from)
+        context['partners'] = Partner.objects.filter(
+            is_active=True
+        )[:9]
+        
         # Add team members
+        context['team_members'] = TeamMember.objects.filter(
+            is_active=True
+        )[:3]
+        
+        return context
         context['team_members'] = TeamMember.objects.filter(
             is_active=True
         )[:3]
@@ -377,8 +425,8 @@ class AboutPage(SEOMixin, Page):
         # Add team members
         context['team_members'] = TeamMember.objects.filter(is_active=True)
         
-        # Add global brands
-        context['brands'] = Brand.objects.all()[:9]
+        # Add business partners
+        context['partners'] = Partner.objects.filter(is_active=True)
         
         return context
 
@@ -595,9 +643,10 @@ class PortfolioPage(SEOMixin, Page):
     def get_context(self, request):
         context = super().get_context(request)
         
-        # Add categories and brands
+        # Add categories and brands for portfolio display
         context['categories'] = ProductCategory.objects.all()
         context['brands'] = Brand.objects.all()
+        context['partners'] = Partner.objects.filter(is_active=True)
         
         return context
 
