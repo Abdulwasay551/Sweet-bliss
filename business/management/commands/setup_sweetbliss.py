@@ -48,7 +48,7 @@ class Command(BaseCommand):
                 except Exception as e:
                     self.stdout.write(f"Could not remove {page.title}: {e}")
 
-            # Create HomePage
+            # Create HomePage using the correct Wagtail method
             home_page = HomePage(
                 title="Sweet Bliss - Premium FMCG Distribution",
                 slug="home",
@@ -64,24 +64,25 @@ class Command(BaseCommand):
                 live=True
             )
             
-            # Add to root page safely
+            # Add to root page using the correct method
             try:
-                root_page.add_child(instance=home_page)
+                from wagtail.models import Page
+                # Set page hierarchy manually
+                home_page.depth = root_page.depth + 1
+                home_page.path = root_page.path + str(root_page.numchild + 1).zfill(4)
+                home_page.save()
+                
+                # Update root page numchild
+                root_page.numchild += 1
+                root_page.save()
+                
                 # Publish the page
-                home_page.save_revision().publish()
+                revision = home_page.save_revision()
+                revision.publish()
                 self.stdout.write(self.style.SUCCESS("✓ Created HomePage"))
             except Exception as e:
                 self.stdout.write(self.style.ERROR(f"Failed to create homepage: {e}"))
-                # Try alternative approach - create directly
-                try:
-                    home_page.path = root_page._get_next_child_path()
-                    home_page.depth = root_page.depth + 1
-                    home_page.save()
-                    home_page.save_revision().publish()
-                    self.stdout.write(self.style.SUCCESS("✓ Created HomePage (alternative method)"))
-                except Exception as e2:
-                    self.stdout.write(self.style.ERROR(f"Failed with alternative method too: {e2}"))
-                    return
+                return
 
         # Update site to use new homepage
         try:
@@ -119,8 +120,19 @@ class Command(BaseCommand):
                 vision_content='<p>We aim to become a leading name in global confectionery and beverage imports, recognized for our reliability, product variety, and ability to anticipate evolving market trends. By bridging global brands with local markets, we help our partners stay competitive and grow.</p>',
                 values_content='<p>At Sweet Bliss, we specialize in importing and distributing premium FMCG and confectionery products. Our diverse portfolio includes chocolates, candies, gums, snacks, coffee, and beverages — carefully selected to meet the needs of supermarkets, retailers, and wholesalers across Pakistan.</p>'
             )
-            home_page.add_child(instance=about_page)
-            about_page.save_revision().publish()
+            
+            # Add as child page using the correct method
+            about_page.depth = home_page.depth + 1
+            about_page.path = home_page.path + str(home_page.numchild + 1).zfill(4)
+            about_page.save()
+            
+            # Update parent numchild
+            home_page.numchild += 1
+            home_page.save()
+            
+            # Publish the page
+            revision = about_page.save_revision()
+            revision.publish()
             self.stdout.write(self.style.SUCCESS("✓ Created About Page"))
 
         # Create Products Page
